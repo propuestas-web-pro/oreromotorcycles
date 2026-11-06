@@ -1039,6 +1039,9 @@
         </div>
 
         <div class="nav-actions">
+          <button id="btnCloudSyncStatus" class="btn-nav-outline btn-sound-active" onclick="forceCloudSyncNow()" title="Estado de sincronización en vivo con oreromotorcycles.es (Clic para sincronizar ahora)">
+            ☁️ Web Sincronizada
+          </button>
           <button id="btnSoundToggle" class="btn-nav-outline btn-sound-active" onclick="toggleSound()" title="Silenciar o activar sonidos de aviso">
             🔔 Sonido: ON
           </button>
@@ -1068,7 +1071,7 @@
         </div>
       </div>
       <div style="display:flex; gap:8px;">
-        <a id="alertBarCallLink" href="tel:6327618152" class="btn-nav-outline" style="background:rgba(59,130,246,0.2); border-color:rgba(59,130,246,0.4); color:#93c5fd; font-weight:800;">
+        <a id="alertBarCallLink" href="tel:966740120" class="btn-nav-outline" style="background:rgba(59,130,246,0.2); border-color:rgba(59,130,246,0.4); color:#93c5fd; font-weight:800;">
           📞 Llamar al Cliente
         </a>
         <button class="btn-primary-action" onclick="switchTab('citas', document.getElementById('tabBtnCitas')); dismissAlertBar();" style="padding:7px 14px; font-size:0.8rem;">
@@ -1389,6 +1392,43 @@
           <input type="text" id="prodKm" class="form-input" placeholder="Ej: 14.500 km">
         </div>
 
+        <div id="groupMotoExtraSpecs" style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-bottom: 4px;">
+          <div class="form-group">
+            <label class="form-label" for="prodMotoType">Estilo / Segmento</label>
+            <select id="prodMotoType" class="form-select">
+              <option value="naked">🏍️ Naked</option>
+              <option value="sport">🏁 Deportiva / Sport</option>
+              <option value="scooter">🛵 Scooter / Maxiscooter</option>
+              <option value="trail">⛰️ Trail / Adventure</option>
+              <option value="custom">🔥 Custom / Bobber</option>
+              <option value="ciclomotor">⚡ Ciclomotor 50cc</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="prodA2">Carnet Compatible</label>
+            <select id="prodA2" class="form-select">
+              <option value="true">🪪 Carnet A2 / A</option>
+              <option value="false">🚗 Carnet B (Coche) / A1 / AM</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="prodCc">Cilindrada (CC)</label>
+            <input type="text" id="prodCc" class="form-input" placeholder="Ej: 125 cc / 689 cc">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="prodPower">Potencia (CV)</label>
+            <input type="text" id="prodPower" class="form-input" placeholder="Ej: 15 CV / 48 CV">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="prodItv">Estado ITV</label>
+            <input type="text" id="prodItv" class="form-input" placeholder="Ej: Al día / Exenta">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="prodFinance">Financiación (€/mes opc.)</label>
+            <input type="number" id="prodFinance" class="form-input" placeholder="Ej: 89">
+          </div>
+        </div>
+
         <div class="form-group">
           <label class="form-label">Foto del Vehículo</label>
           <div style="margin-bottom:10px;">
@@ -1478,6 +1518,43 @@
           </div>
         </div>
 
+        <div id="groupEditMotoExtraSpecs" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; margin-bottom:4px;">
+          <div class="form-group">
+            <label class="form-label" for="editProdMotoType">Segmento</label>
+            <select id="editProdMotoType" class="form-select">
+              <option value="naked">🏍️ Naked</option>
+              <option value="sport">🏁 Deportiva / Sport</option>
+              <option value="scooter">🛵 Scooter</option>
+              <option value="trail">⛰️ Trail</option>
+              <option value="custom">🔥 Custom</option>
+              <option value="ciclomotor">⚡ Ciclomotor</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="editProdA2">Carnet A2</label>
+            <select id="editProdA2" class="form-select">
+              <option value="true">🪪 Sí (Carnet A2 / A)</option>
+              <option value="false">🚗 Carnet B / A1 / AM</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="editProdCc">Cilindrada</label>
+            <input type="text" id="editProdCc" class="form-input" placeholder="Ej: 689 cc">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="editProdPower">Potencia</label>
+            <input type="text" id="editProdPower" class="form-input" placeholder="Ej: 73.4 CV">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="editProdItv">Vigencia ITV</label>
+            <input type="text" id="editProdItv" class="form-input" placeholder="Ej: Al día / 2027">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="editProdFinance">Cuota (€/mes)</label>
+            <input type="number" id="editProdFinance" class="form-input" placeholder="Ej: 99">
+          </div>
+        </div>
+
         <div class="form-group">
           <label class="form-label">Fotografía de la Moto</label>
           <div style="display:flex; gap:10px; align-items:center; margin-bottom:10px;">
@@ -1543,7 +1620,7 @@
             </div>
             <div style="font-size:0.84rem; color:#94a3b8; margin-top:4px;">Concesionario Multimarca & Taller Mecánico Homologado · Desde 2015</div>
             <div style="font-size:0.8rem; color:#cbd5e1; margin-top:2px;">Calle San Agustín 18, 03300 Orihuela (Alicante)</div>
-            <div style="font-size:0.8rem; color:#cbd5e1;">CIF: B-54982143 · Tel: +34 632 76 18 152 · oreromotorcycles.es</div>
+            <div style="font-size:0.8rem; color:#cbd5e1;">CIF: B-54892147 · Tel: 966 74 01 20 · oreromotorcycles.es</div>
           </div>
           <div style="text-align:right;">
             <span style="background:rgba(239,35,60,0.15); border:1px solid rgba(239,35,60,0.4); color:#ff6b6b; padding:4px 10px; border-radius:6px; font-size:0.75rem; font-weight:800; letter-spacing:0.06em;">DOCUMENTO OFICIAL TALLER</span>
@@ -1686,67 +1763,1047 @@
   <!-- ══════════════════════════════════════════════════════════
        JAVASCRIPT APPLICATION ENGINE
        ══════════════════════════════════════════════════════════ -->
-  <script>
+    <script>
     // ══════════════════════════════════════════════════════════
     // BASE INVENTORY (18 Authentic Motos + 6 Boutique Items)
     // ══════════════════════════════════════════════════════════
     const CANONICAL_STOCK = [
-      { id: "m1", title: "Yamaha MT-07", category: "ocasion", price: "6.900 €", year: 2021, km: "12.500 km", image: "assets/moto_yamaha_mt07.jpg", status: "disponible", desc: "Naked ágil y potente. Revisión completa de 60 puntos recién hecha en taller y 1 año de garantía por escrito." },
-      { id: "m2", title: "Honda CBR 500R", category: "ocasion", price: "5.800 €", year: 2022, km: "8.300 km", image: "assets/moto_honda_cbr500r.jpg", status: "disponible", desc: "Deportiva perfecta para carnet A2. Muy cuidada, neumáticos en perfecto estado." },
-      { id: "m3", title: "Kawasaki Ninja 650", category: "nueva", price: "7.900 €", year: 2024, km: "0 km (Nueva)", image: "assets/moto_kawasaki_ninja650.jpg", status: "disponible", desc: "A estrenar con 3 años de garantía oficial Kawasaki. Matriculación inmediata." },
-      { id: "m4", title: "Suzuki V-Strom 650", category: "ocasion", price: "5.500 €", year: 2020, km: "18.200 km", image: "assets/moto_suzuki_vstrom650.jpg", status: "disponible", desc: "Trail todoterreno con maleta trasera y defensas de motor instaladas." },
-      { id: "m5", title: "Peugeot Metropolis 400 Active (3 ruedas)", category: "ocasion", price: "6.500 €", year: 2021, km: "379 km", image: "assets/real_peugeot_metropolis_master.jpg", status: "disponible", desc: "Maxiscooter de 3 ruedas conducible con carnet B de coche. Solamente 379 km reales." },
-      { id: "m6", title: "QJ Motor SRK 125J Naked", category: "nueva", price: "2.999 €", year: 2024, km: "0 km (Nueva)", image: "assets/real_qj_srk_master.jpg", status: "disponible", desc: "Naked de 125 cc refrigerada por líquido, pantalla LCD, iluminación LED completa y 3 años de garantía." },
-      { id: "m7", title: "Honda SH 350i Sport ABS", category: "ocasion", price: "5.200 €", year: 2022, km: "11.420 km", image: "assets/moto_honda_sh350.jpg", status: "disponible", desc: "La reina de la ciudad en cilindrada 350 cc con llave inteligente Smart Key y frenos ABS." },
-      { id: "m8", title: "KYMCO Agility City PLUS 125", category: "nueva", price: "2.199 €", year: 2024, km: "0 km (Nueva)", image: "assets/moto_kymco_agility.jpg", status: "disponible", desc: "Rueda alta súper cómoda y económica para Orihuela y alrededores. 3 años de garantía oficial." },
-      { id: "m9", title: "SYM Symphony 125 SR", category: "nueva", price: "2.499 €", year: 2024, km: "0 km (Nueva)", image: "assets/moto_sym_symphony.jpg", status: "disponible", desc: "Incluye baúl trasero de serie y frenada combinada. Muy bajo consumo." },
-      { id: "m10", title: "Macbor Montana XR1 125 EVO", category: "nueva", price: "3.299 €", year: 2024, km: "0 km (Nueva)", image: "assets/moto_macbor_montana.jpg", status: "disponible", desc: "Trail de 125 con maletas laterales, defensas y cúpula alta." },
-      { id: "m11", title: "KYMCO K-XCT 125i Sport ABS", category: "ocasion", price: "2.350 €", year: 2016, km: "47.598 km", image: "assets/real_kymco_kxct_master.jpg", status: "disponible", desc: "Scooter deportivo con ABS y motor inyección electrónica de respuesta inmediata." },
-      { id: "m12", title: "Suzuki Burgman 250 Executive", category: "ocasion", price: "1.350 €", year: 2005, km: "86.258 km", image: "assets/real_suzuki_burgman_master.jpg", status: "disponible", desc: "Motor y pistón nuevos montados en nuestro taller. Capacidad para 2 cascos integrales." },
-      { id: "m13", title: "Peugeot Citystar 50 RS Sport", category: "ocasion", price: "1.050 €", year: 2017, km: "36.238 km", image: "assets/real_peugeot_citystar_master.jpg", status: "disponible", desc: "Ciclomotor conducible con permiso AM desde los 15 años o carnet de coche." },
-      { id: "m14", title: "Rieju MRT 50 Pro Black Series", category: "nueva", price: "3.899 €", year: 2024, km: "0 km (Nueva)", image: "assets/real_rieju_mrt_master.jpg", status: "disponible", desc: "Supermotard con motor 2 tiempos Minarelli AM6 refrigerado por líquido y horquilla invertida." },
-      { id: "m15", title: "Hanway Furious NK 125 Naked", category: "ocasion", price: "1.950 €", year: 2023, km: "2.500 km", image: "assets/moto_hanway_furious.jpg", status: "disponible", desc: "Naked con solo 2.500 km. Motor 15 CV con pantalla digital TFT a color." },
-      { id: "m16", title: "Vespa LX 50 2T Clásica", category: "ocasion", price: "950 €", year: 2008, km: "28.410 km", image: "assets/vespa_lx_hd.jpg", status: "disponible", desc: "Chapa de acero clásica en azul cielo. Muy económica y revisada." },
-      { id: "m17", title: "Benda Napoleon Bob 250 Custom Bobber", category: "nueva", price: "4.290 €", year: 2024, km: "0 km (Nueva)", image: "assets/moto_benda_napoleon.jpg", status: "disponible", desc: "Bicilíndrica en V con asiento flotante monoplaza y suspensión delantera Hossack." },
-      { id: "m18", title: "Yamaha XV 535 SP Virago Custom", category: "ocasion", price: "2.500 €", year: 1998, km: "45.978 km", image: "assets/real_yamaha_virago_master.jpg", status: "vendida", desc: "Clásica bicilíndrica con transmisión por cardán y alforjas de piel. Entregada." },
-      // Boutique
-      { id: "b1", title: "Casco Modular LS2 Strobe II", category: "casco", price: "139 €", year: 2026, km: "Nuevo", image: "assets/boutique_casco_ls2_strobe.jpg", status: "disponible", desc: "Homologado bajo la nueva normativa europea ECE 22.06 con doble homologación P/J y visor solar interior." },
-      { id: "b2", title: "Casco Jet Urbano LS2 Airflow", category: "casco", price: "69 €", year: 2026, km: "Nuevo", image: "assets/boutique_casco_ls2_airflow.jpg", status: "disponible", desc: "Casco ligero y ventilado para ciudad con pantalla antiarañazos y protección UV." },
-      { id: "b3", title: "Casco Integral MT Thunder 4 SV ECE 22.06", category: "casco", price: "159 €", year: 2026, km: "Nuevo", image: "assets/boutique_casco_mt_thunder.jpg", status: "disponible", desc: "Máxima puntuación en seguridad europea ECE 22.06 con gafa solar desplegable y cierre micrométrico metálico." },
-      { id: "b4", title: "Chaqueta Cordura Alpinestars Andes v3 Drystar", category: "chaqueta", price: "249 €", year: 2026, km: "Nuevo", image: "assets/boutique_chaqueta_alpinestars.jpg", status: "disponible", desc: "100% impermeable y transpirable con membrana Drystar, forro térmico desmontable y protecciones en codos y hombros." },
-      { id: "b5", title: "Guantes de Piel & Protección Carbono", category: "chaqueta", price: "59 €", year: 2026, km: "Nuevo", image: "assets/boutique_guantes_carbono.jpg", status: "disponible", desc: "Piel de alta resistencia a la abrasión con nudillos reforzados en fibra de carbono y compatibilidad con pantalla táctil." },
-      { id: "b6", title: "Antirrobo de Disco con Alarma Acústica 120dB", category: "accesorio", price: "45 €", year: 2026, km: "Nuevo", image: "assets/boutique_antirrobo_disco.jpg", status: "disponible", desc: "Cuerpo de acero forjado de 6 mm resistente al corte y sensor de movimiento con sirena de alta potencia." }
-    ];
+  {
+    "id": "m1",
+    "brand": "Yamaha",
+    "model": "MT-07",
+    "title": "Yamaha MT-07",
+    "category": "ocasion",
+    "type": "naked",
+    "a2": true,
+    "price": "6.900 €",
+    "priceCash": 6900,
+    "financeFrom": 119,
+    "year": 2021,
+    "km": "12.500 km",
+    "cc": "689 cc",
+    "power": "73.4 CV",
+    "license": "Permiso A2 / A",
+    "itv": "Nov. 2027",
+    "badge": "Ocasión",
+    "image": "assets/moto_yamaha_mt07.jpg",
+    "status": "disponible",
+    "desc": "Hyper-naked líder en su categoría. Motor bicilíndrico CP2 de par motor emocionante, pantalla LCD digital y neumáticos en perfecto estado. Revisión completa de 60 puntos recién hecha en taller.",
+    "features": [
+      "Motor bicilíndrico Crossplane CP2 de 689 cc",
+      "12.500 km certificados con libro de mantenimiento",
+      "Limitada / limitable para carnet A2",
+      "Frenos de doble disco delantero de 298 mm con ABS",
+      "Revisión técnica certificada de 60 puntos"
+    ]
+  },
+  {
+    "id": "m2",
+    "brand": "Honda",
+    "model": "CBR 500R",
+    "title": "Honda CBR 500R",
+    "category": "ocasion",
+    "type": "sport",
+    "a2": true,
+    "price": "5.800 €",
+    "priceCash": 5800,
+    "financeFrom": 99,
+    "year": 2022,
+    "km": "8.300 km",
+    "cc": "471 cc",
+    "power": "48 CV",
+    "license": "Permiso A2",
+    "itv": "Mar. 2027",
+    "badge": "Ocasión",
+    "image": "assets/moto_honda_cbr500r.jpg",
+    "status": "disponible",
+    "desc": "Deportiva polivalente con ADN racing HRC. Horquilla invertida Showa SFF-BP de 41 mm, doble disco delantero y embrague antirrebote asistido.",
+    "features": [
+      "Potencia exacta de 35 kW (48 CV) para carnet A2 directo",
+      "Horquilla invertida Showa SFF-BP de 41 mm",
+      "Solo 8.300 km reales certificados en cuadro",
+      "Embrague antirrebote asistido y cuadro LCD invertido",
+      "Gestión documental DGT y cambio de titular incluido"
+    ]
+  },
+  {
+    "id": "m3",
+    "brand": "Kawasaki",
+    "model": "Ninja 650",
+    "title": "Kawasaki Ninja 650",
+    "category": "nueva",
+    "type": "sport",
+    "a2": true,
+    "price": "7.900 €",
+    "priceCash": 7900,
+    "financeFrom": 139,
+    "year": 2024,
+    "km": "0 km (Nueva)",
+    "cc": "649 cc",
+    "power": "68 CV",
+    "license": "Permiso A2 / A",
+    "itv": "Exenta (Nueva)",
+    "badge": "Nueva",
+    "image": "assets/moto_kawasaki_ninja650.jpg",
+    "status": "disponible",
+    "desc": "Vehículo nuevo a estrenar 0 km. Pantalla TFT a color con conectividad smartphone Rideology App, embrague asistido y óptica delantera full LED KRT.",
+    "features": [
+      "0 km nueva a estrenar",
+      "Pantalla TFT color con Bluetooth Rideology",
+      "Kit de limitación A2 disponible sin coste extra",
+      "Garantía oficial Kawasaki de 3 años",
+      "Matriculación y puesta en calle inmediata"
+    ]
+  },
+  {
+    "id": "m4",
+    "brand": "Suzuki",
+    "model": "V-Strom 650",
+    "title": "Suzuki V-Strom 650",
+    "category": "ocasion",
+    "type": "trail",
+    "a2": true,
+    "price": "5.500 €",
+    "priceCash": 5500,
+    "financeFrom": 95,
+    "year": 2020,
+    "km": "18.200 km",
+    "cc": "645 cc",
+    "power": "70 CV",
+    "license": "Permiso A2 / A",
+    "itv": "Oct. 2027",
+    "badge": "Ocasión",
+    "image": "assets/moto_suzuki_vstrom650.jpg",
+    "status": "disponible",
+    "desc": "La reina de los viajes y la polivalencia. Edición XT con llantas doradas de radios tubeless, control de tracción desconectable de 2 modos y pantalla regulable.",
+    "features": [
+      "Llantas de radios doradas DID Tubeless",
+      "Motor bicilíndrico en V a 90° de máxima fiabilidad",
+      "Control de tracción STCS regulable en 2 modos y desconectable",
+      "Defensas de motor y cubrepuños originales",
+      "Revisión completa de 60 puntos y puesta a punto"
+    ]
+  },
+  {
+    "id": "m5",
+    "brand": "Peugeot",
+    "model": "Metropolis 400 Active (3 ruedas)",
+    "title": "Peugeot Metropolis 400 Active (3 ruedas)",
+    "category": "ocasion",
+    "type": "scooter",
+    "a2": false,
+    "price": "6.500 €",
+    "priceCash": 6500,
+    "financeFrom": 129,
+    "year": 2021,
+    "km": "379 km",
+    "cc": "400 cc",
+    "power": "36 CV",
+    "license": "Permiso B (+21 años)",
+    "itv": "Sep. 2027",
+    "badge": "379 km certificados",
+    "image": "assets/real_peugeot_metropolis_master.jpg",
+    "status": "disponible",
+    "desc": "Triciclo de 3 ruedas con solo 379 km certificados. Conducible con permiso B de coche (según normativa DGT para vehículos L5e). Máxima estabilidad y seguridad.",
+    "features": [
+      "Conducible con permiso B de coche (L5e)",
+      "Solo 379 km certificados en cuadro digital",
+      "Frenada combinada SBC con sistema antibloqueo ABS",
+      "Sistema de bloqueo de inclinación en parado",
+      "Cofre con capacidad para 2 cascos"
+    ]
+  },
+  {
+    "id": "m6",
+    "brand": "QJ Motor",
+    "model": "SRK 125J",
+    "title": "QJ Motor SRK 125J Naked",
+    "category": "nueva",
+    "type": "naked",
+    "a2": false,
+    "price": "2.999 €",
+    "priceCash": 2999,
+    "financeFrom": 59,
+    "year": 2026,
+    "km": "0 km (Nueva)",
+    "cc": "125 cc",
+    "power": "15 CV",
+    "license": "Permiso B (3 años) o A1",
+    "itv": "Exenta (Nueva)",
+    "badge": "Nueva a estrenar",
+    "image": "assets/real_qj_srk_master.jpg",
+    "status": "disponible",
+    "desc": "Naked deportiva de 125 cc a estrenar. Motor monocilíndrico de refrigeración líquida de 15 CV, iluminación full LED y cuadro LCD digital.",
+    "features": [
+      "Potencia máxima legal: 15 CV",
+      "Refrigeración líquida e inyección electrónica",
+      "Horquilla invertida delantera y frenos de disco ABS",
+      "Garantía legal de 3 años para vehículos nuevos",
+      "Garantía comercial de hasta 6 años"
+    ]
+  },
+  {
+    "id": "m7",
+    "brand": "Honda",
+    "model": "SH 350i Sport ABS",
+    "title": "Honda SH 350i Sport ABS",
+    "category": "ocasion",
+    "type": "scooter",
+    "a2": true,
+    "price": "5.200 €",
+    "priceCash": 5200,
+    "financeFrom": 99,
+    "year": 2022,
+    "km": "11.420 km",
+    "cc": "330 cc",
+    "power": "29.2 CV",
+    "license": "Permiso A2",
+    "itv": "Jun. 2027",
+    "badge": "Edición Sport",
+    "image": "assets/moto_honda_sh350.jpg",
+    "status": "disponible",
+    "desc": "El scooter de rueda alta por excelencia en su versión deportiva de 350 cc. Motor eSP+ de baja fricción, control de tracción HSTC desconectable y llave inteligente Smart Key.",
+    "features": [
+      "Motor Honda eSP+ 29.2 CV con gran aceleración",
+      "Control de par seleccionable Honda (HSTC)",
+      "Ruedas altas de 16 pulgadas para máxima estabilidad",
+      "Llave inteligente Smart Key y toma USB-C bajo el asiento",
+      "Revisión técnica en taller propio oficial"
+    ]
+  },
+  {
+    "id": "m8",
+    "brand": "KYMCO",
+    "model": "Agility City PLUS 125 Euro 5+",
+    "title": "KYMCO Agility City PLUS 125",
+    "category": "nueva",
+    "type": "scooter",
+    "a2": false,
+    "price": "2.199 €",
+    "priceCash": 2199,
+    "financeFrom": 45,
+    "year": 2026,
+    "km": "0 km (Nueva)",
+    "cc": "125 cc",
+    "power": "9 CV",
+    "license": "Permiso B (3 años) o A1",
+    "itv": "Exenta (Nueva)",
+    "badge": "Oferta especial",
+    "image": "assets/moto_kymco_agility.jpg",
+    "status": "disponible",
+    "desc": "Scooter urbano de rueda alta líder en fiabilidad. Homologación Euro 5+, suelo plano, baúl trasero de serie y consumo medio inferior a 2.5 l/100 km.",
+    "features": [
+      "Vehículo nuevo 0 km a estrenar",
+      "Rueda delantera de 16 pulgadas y frenada combinada CBS",
+      "Suelo plano funcional y gancho portabolsas",
+      "Baúl trasero incluido de serie",
+      "3 años de garantía legal"
+    ]
+  },
+  {
+    "id": "m9",
+    "brand": "SYM",
+    "model": "Symphony 125 SR (Baúl incluido)",
+    "title": "SYM Symphony 125 SR",
+    "category": "nueva",
+    "type": "scooter",
+    "a2": false,
+    "price": "2.499 €",
+    "priceCash": 2499,
+    "financeFrom": 49,
+    "year": 2026,
+    "km": "0 km (Nueva)",
+    "cc": "125 cc",
+    "power": "11.4 CV",
+    "license": "Permiso B (3 años) o A1",
+    "itv": "Exenta (Nueva)",
+    "badge": "Baúl de serie",
+    "image": "assets/moto_sym_symphony.jpg",
+    "status": "disponible",
+    "desc": "Scooter moderno de suelo plano y rueda alta. Incluye baúl trasero SHAD a juego. Motor de inyección de bajo consumo con excelente aceleración urbana.",
+    "features": [
+      "3 años de garantía legal para vehículos nuevos",
+      "Garantía comercial SYM de hasta 5 años",
+      "Frenada combinada de discos lobulados",
+      "Baúl trasero incluido de fábrica",
+      "Suelo plano y luz diurna LED"
+    ]
+  },
+  {
+    "id": "m10",
+    "brand": "Macbor",
+    "model": "Montana XR1 125 EVO Trail",
+    "title": "Macbor Montana XR1 125 EVO",
+    "category": "nueva",
+    "type": "trail",
+    "a2": false,
+    "price": "3.299 €",
+    "priceCash": 3299,
+    "financeFrom": 65,
+    "year": 2026,
+    "km": "0 km (Nueva)",
+    "cc": "125 cc",
+    "power": "12.6 CV",
+    "license": "Permiso B (3 años) o A1",
+    "itv": "Exenta (Nueva)",
+    "badge": "Trail aventura",
+    "image": "assets/moto_macbor_montana.jpg",
+    "status": "disponible",
+    "desc": "Auténtica trail de aventura para disfrutar dentro y fuera del asfalto. Equipamiento de serie con defensas laterales, cubre cárter y juego de 3 maletas incluido.",
+    "features": [
+      "Kit de maletas y baúl adventure incluido de serie",
+      "Defensas perimetrales y cubre cárter",
+      "Horquilla delantera invertida y monoamortiguador trasero",
+      "Iluminación full LED con tomas auxiliares de carga",
+      "3 años de garantía legal"
+    ]
+  },
+  {
+    "id": "m11",
+    "brand": "KYMCO",
+    "model": "K-XCT 125i Sport ABS",
+    "title": "KYMCO K-XCT 125i Sport ABS",
+    "category": "ocasion",
+    "type": "scooter",
+    "a2": false,
+    "price": "2.350 €",
+    "priceCash": 2350,
+    "financeFrom": 47,
+    "year": 2016,
+    "km": "47.598 km",
+    "cc": "125 cc",
+    "power": "14.4 CV",
+    "license": "Permiso B (3 años) o A1",
+    "itv": "Jul. 2027",
+    "badge": "Revisión recién hecha",
+    "image": "assets/real_kymco_kxct_master.jpg",
+    "status": "disponible",
+    "desc": "Maxiscooter deportivo en muy buen estado mecánico. Historial de mantenimiento al día, cúpula deportiva y gran agilidad tanto en carretera como en ciudad.",
+    "features": [
+      "Motor 125 cc refrigerado por líquido con 14.4 CV",
+      "Frenos antibloqueo ABS de doble canal",
+      "Mantenimiento preventivo recién completado en taller",
+      "Neumáticos y pastillas de freno en óptimo estado",
+      "Revisión técnica en taller propio oficial"
+    ]
+  },
+  {
+    "id": "m12",
+    "brand": "Suzuki",
+    "model": "Burgman 250 Executive",
+    "title": "Suzuki Burgman 250 Executive",
+    "category": "ocasion",
+    "type": "scooter",
+    "a2": true,
+    "price": "1.350 €",
+    "priceCash": 1350,
+    "financeFrom": 35,
+    "year": 2005,
+    "km": "86.258 km",
+    "cc": "250 cc",
+    "power": "23 CV",
+    "license": "Permiso A2",
+    "itv": "Ago. 2027",
+    "badge": "Revisión completa de motor",
+    "image": "assets/real_suzuki_burgman_master.jpg",
+    "status": "disponible",
+    "desc": "Maxiscooter de amplio confort con cilindro y pistón nuevos montados en nuestro taller. Capacidad bajo el asiento para dos cascos integrales.",
+    "features": [
+      "Cilindro y pistón nuevos instalados por nuestros mecánicos",
+      "Enorme maletero bajo asiento para 2 cascos integrales",
+      "Pantalla parabrisas protectora de alta cobertura",
+      "Asiento con respaldo ergonómico para conductor y pasajero",
+      "Revisión técnica en taller propio oficial"
+    ]
+  },
+  {
+    "id": "m13",
+    "brand": "Peugeot",
+    "model": "Citystar 50 RS Sport",
+    "title": "Peugeot Citystar 50 RS Sport",
+    "category": "ocasion",
+    "type": "ciclomotor",
+    "a2": false,
+    "price": "1.050 €",
+    "priceCash": 1050,
+    "financeFrom": null,
+    "year": 2017,
+    "km": "36.238 km",
+    "cc": "50 cc",
+    "power": "4.8 CV",
+    "license": "Permiso AM o B",
+    "itv": "Al día (AM)",
+    "badge": "Edición deportiva",
+    "image": "assets/real_peugeot_citystar_master.jpg",
+    "status": "disponible",
+    "desc": "Ciclomotor de chasis robusto con frenos de disco delantero y trasero. Muy ágil y práctico para desplazamientos urbanos económicos y fiables.",
+    "features": [
+      "Conducible con permiso AM (desde los 15 años) o B de coche",
+      "Doble disco de freno delantero y trasero",
+      "Gran guantera delantera y plataforma espaciosa",
+      "Consumo mínimo inferior a 2 litros a los 100 km",
+      "Revisión técnica en taller propio oficial"
+    ]
+  },
+  {
+    "id": "m14",
+    "brand": "Rieju",
+    "model": "MRT 50 Pro Black Series Supermotard",
+    "title": "Rieju MRT 50 Pro Black Series",
+    "category": "nueva",
+    "type": "ciclomotor",
+    "a2": false,
+    "price": "3.899 €",
+    "priceCash": 3899,
+    "financeFrom": 75,
+    "year": 2026,
+    "km": "0 km (Nueva)",
+    "cc": "50 cc",
+    "power": "5 CV",
+    "license": "Permiso AM o B",
+    "itv": "Exenta (Nueva)",
+    "badge": "Motor 2T Minarelli",
+    "image": "assets/real_rieju_mrt_master.jpg",
+    "status": "disponible",
+    "desc": "Supermotard de 50 cc con especificaciones profesionales. Motor Minarelli AM6 refrigerado por líquido, suspensión delantera invertida y basculante de aluminio.",
+    "features": [
+      "Motor Minarelli AM6 de 2 tiempos con refrigeración líquida",
+      "Horquilla invertida Pro y monoamortiguador con bieletas",
+      "Basculante de aluminio y manillar de sección variable",
+      "Discos wave lobulados de gran mordida",
+      "3 años de garantía legal para vehículos nuevos"
+    ]
+  },
+  {
+    "id": "m15",
+    "brand": "Hanway",
+    "model": "Furious NK 125 Naked",
+    "title": "Hanway Furious NK 125 Naked",
+    "category": "ocasion",
+    "type": "naked",
+    "a2": false,
+    "price": "1.950 €",
+    "priceCash": 1950,
+    "financeFrom": 42,
+    "year": 2023,
+    "km": "2.500 km",
+    "cc": "125 cc",
+    "power": "14.9 CV",
+    "license": "Permiso B (3 años) o A1",
+    "itv": "Ene. 2027",
+    "badge": "2.500 km certificados",
+    "image": "assets/moto_hanway_furious.jpg",
+    "status": "disponible",
+    "desc": "Naked moderna y ligera de 125 cc con poquísimo uso. Motor DOHC de 4 válvulas y 15 CV, panel TFT a color y frenada combinada CBS.",
+    "features": [
+      "Motor multiválvulas DOHC 14.9 CV refrigerado por líquido",
+      "Pantalla digital a color TFT con indicador de marcha",
+      "Horquilla invertida delantera deportiva",
+      "Iluminación full LED delantera y trasera",
+      "Revisión técnica en taller propio oficial"
+    ]
+  },
+  {
+    "id": "m16",
+    "brand": "Vespa",
+    "model": "LX 50 2T Clásica",
+    "title": "Vespa LX 50 2T Clásica",
+    "category": "ocasion",
+    "type": "ciclomotor",
+    "a2": false,
+    "price": "950 €",
+    "priceCash": 950,
+    "financeFrom": null,
+    "year": 2008,
+    "km": "28.410 km",
+    "cc": "50 cc",
+    "power": "4.3 CV",
+    "license": "Permiso AM o B",
+    "itv": "May. 2027",
+    "badge": "Ocasión económica",
+    "image": "assets/vespa_lx_hd.jpg",
+    "status": "disponible",
+    "desc": "Icono del diseño italiano con carrocería de chapa de acero autoportante. Mecánica 2T revisada y lista para circular con gran economía.",
+    "features": [
+      "Carrocería clásica de chapa de acero",
+      "Motor 2T de respuesta inmediata y bajo coste de mantenimiento",
+      "Arranque eléctrico y por pedal de apoyo",
+      "Neumáticos y frenos revisados por mecánicos",
+      "Revisión técnica en taller propio oficial"
+    ]
+  },
+  {
+    "id": "m17",
+    "brand": "Benda",
+    "model": "Napoleon Bob 250 Custom Bobber",
+    "title": "Benda Napoleon Bob 250 Custom Bobber",
+    "category": "nueva",
+    "type": "custom",
+    "a2": true,
+    "price": "4.290 €",
+    "priceCash": 4290,
+    "financeFrom": 85,
+    "year": 2026,
+    "km": "0 km (Nueva)",
+    "cc": "250 cc",
+    "power": "26 CV",
+    "license": "Permiso A2",
+    "itv": "Exenta (Nueva)",
+    "badge": "Diseño exclusivo",
+    "image": "assets/moto_benda_napoleon.jpg",
+    "status": "disponible",
+    "desc": "Custom de estética bobber vanguardista con basculante específico y motor bicilíndrico en V. Estilo único, sonido inconfundible y posición de conducción rebajada.",
+    "features": [
+      "Motor bicilíndrico en V de refrigeración líquida",
+      "Suspensión delantera con sistema tipo Hossack / girder",
+      "Frenos de disco con sistema antibloqueo ABS",
+      "Asiento monoplaza flotante estilo bobber clásico",
+      "3 años de garantía legal para vehículos nuevos"
+    ]
+  },
+  {
+    "id": "m18",
+    "brand": "Yamaha",
+    "model": "XV 535 SP Virago Custom",
+    "title": "Yamaha XV 535 SP Virago Custom",
+    "category": "ocasion",
+    "type": "custom",
+    "a2": true,
+    "price": "2.500 €",
+    "priceCash": 2500,
+    "financeFrom": null,
+    "year": 1998,
+    "km": "45.978 km",
+    "cc": "535 cc",
+    "power": "46 CV",
+    "license": "Permiso A2",
+    "itv": "Entregada",
+    "badge": "Clásica revisada",
+    "image": "assets/real_yamaha_virago_master.jpg",
+    "status": "vendida",
+    "desc": "Auténtico clásico custom japonés en muy buen estado de conservación y mecánica revisada por completo en nuestro taller de Orihuela. Entregada.",
+    "features": [
+      "Motor bicilíndrico en V clásico",
+      "Transmisión por cardán sin mantenimiento",
+      "Alforjas laterales de cuero incluidas",
+      "Pintura y cromados cuidados",
+      "Vehículo entregado a su nuevo propietario"
+    ]
+  },
+  {
+    "id": "b1",
+    "brand": "LS2 Helmets",
+    "model": "Strobe II Modular",
+    "title": "Casco Modular LS2 Strobe II",
+    "category": "casco",
+    "type": "boutique",
+    "a2": false,
+    "price": "139 €",
+    "priceCash": 139,
+    "year": 2026,
+    "km": "Nuevo",
+    "badge": "ECE 22.06",
+    "image": "assets/boutique_casco_ls2_strobe.jpg",
+    "status": "disponible",
+    "desc": "Homologado bajo la nueva normativa europea ECE 22.06 con doble homologación P/J y visor solar interior."
+  },
+  {
+    "id": "b2",
+    "brand": "MT Helmets",
+    "model": "Thunder 4 SV Integral",
+    "title": "Casco Integral MT Thunder 4 SV ECE 22.06",
+    "category": "casco",
+    "type": "boutique",
+    "a2": false,
+    "price": "159 €",
+    "priceCash": 159,
+    "year": 2026,
+    "km": "Nuevo",
+    "badge": "Alta Seguridad",
+    "image": "assets/boutique_casco_mt_thunder.jpg",
+    "status": "disponible",
+    "desc": "Máxima puntuación en seguridad europea ECE 22.06 con gafa solar desplegable y cierre micrométrico metálico."
+  },
+  {
+    "id": "b3",
+    "brand": "Alpinestars",
+    "model": "Andes v3 Drystar",
+    "title": "Chaqueta Cordura Alpinestars Andes v3 Drystar",
+    "category": "chaqueta",
+    "type": "boutique",
+    "a2": false,
+    "price": "249 €",
+    "priceCash": 249,
+    "year": 2026,
+    "km": "Nuevo",
+    "badge": "Drystar Impermeable",
+    "image": "assets/boutique_chaqueta_alpinestars.jpg",
+    "status": "disponible",
+    "desc": "100% impermeable y transpirable con membrana Drystar, forro térmico desmontable y protecciones CE en codos y hombros."
+  },
+  {
+    "id": "b4",
+    "brand": "LS2 Helmets",
+    "model": "Airflow Open Face",
+    "title": "Casco Jet Urbano LS2 Airflow",
+    "category": "casco",
+    "type": "boutique",
+    "a2": false,
+    "price": "69 €",
+    "priceCash": 69,
+    "year": 2026,
+    "km": "Nuevo",
+    "badge": "Urbano Ligero",
+    "image": "assets/boutique_casco_ls2_airflow.jpg",
+    "status": "disponible",
+    "desc": "Casco ligero y ventilado para ciudad con pantalla antiarañazos y protección UV."
+  },
+  {
+    "id": "b5",
+    "brand": "Boutique Orero",
+    "model": "Guantes Piel & Carbono",
+    "title": "Guantes de Piel & Protección Carbono",
+    "category": "chaqueta",
+    "type": "boutique",
+    "a2": false,
+    "price": "59 €",
+    "priceCash": 59,
+    "year": 2026,
+    "km": "Nuevo",
+    "badge": "Protección Carbono",
+    "image": "assets/boutique_guantes_carbono.jpg",
+    "status": "disponible",
+    "desc": "Piel de alta resistencia a la abrasión con nudillos reforzados en fibra de carbono y compatibilidad con pantalla táctil."
+  },
+  {
+    "id": "b6",
+    "brand": "Seguridad Moto",
+    "model": "Antirrobo Disco con Alarma",
+    "title": "Antirrobo de Disco con Alarma Acústica 120dB",
+    "category": "accesorio",
+    "type": "boutique",
+    "a2": false,
+    "price": "45 €",
+    "priceCash": 45,
+    "year": 2026,
+    "km": "Nuevo",
+    "badge": "Alarma 120dB",
+    "image": "assets/boutique_antirrobo_disco.jpg",
+    "status": "disponible",
+    "desc": "Cuerpo de acero forjado de 6 mm resistente al corte y sensor de movimiento con sirena de alta potencia."
+  }
+];
 
-    // Seed Appointments
     const DEFAULT_CITAS = [
-      { ref: "ORERO-CITA-1001", name: "Carlos Navarro", phone: "622114455", moto: "Yamaha MT-07", service: "Revisión Oficial 60 Puntos", date: "2026-10-23", slot: "Mañana (09:30 - 13:30)", status: "confirmada" },
-      { ref: "ORERO-CITA-1002", name: "Manuel García", phone: "633445566", moto: "Honda CBR 500R", service: "Cambio de Neumáticos Del/Tras", date: "2026-10-23", slot: "Tarde (16:30 - 20:30)", status: "pendiente" },
-      { ref: "ORERO-CITA-1003", name: "David Ruiz", phone: "677889900", moto: "Kawasaki Ninja 650", service: "Pre-ITV Completa + Ajuste Cadena", date: "2026-10-24", slot: "Mañana (09:30 - 13:30)", status: "confirmada" },
-      { ref: "ORERO-CITA-1004", name: "Alejandro López", phone: "688990011", moto: "KYMCO Agility 125", service: "Diagnosis por Ordenador & Batería", date: "2026-10-24", slot: "Tarde (16:30 - 20:30)", status: "pendiente" },
-      { ref: "ORERO-CITA-1005", name: "Laura Martínez", phone: "644556677", moto: "Suzuki V-Strom 650", service: "Revisión 20.000 km & Reglaje", date: "2026-10-25", slot: "Mañana (10:00 - 13:30)", status: "confirmada" },
-      { ref: "ORERO-CITA-1006", name: "Vicente Belmonte", phone: "699001122", moto: "SYM Symphony 125", service: "Pastillas de Freno & Aceite", date: "2026-10-26", slot: "Mañana (09:30 - 13:30)", status: "pendiente" }
-    ];
+  {
+    "ref": "ORERO-CITA-1001",
+    "name": "Carlos Navarro",
+    "phone": "622114455",
+    "moto": "Yamaha MT-07",
+    "service": "Revisión Oficial 60 Puntos",
+    "date": "2026-11-07",
+    "slot": "Mañana (09:30 - 13:30)",
+    "status": "confirmada"
+  },
+  {
+    "ref": "ORERO-CITA-1002",
+    "name": "Manuel García",
+    "phone": "633445566",
+    "moto": "Honda CBR 500R",
+    "service": "Cambio de Neumáticos Del/Tras",
+    "date": "2026-11-07",
+    "slot": "Tarde (16:30 - 20:30)",
+    "status": "pendiente"
+  },
+  {
+    "ref": "ORERO-CITA-1003",
+    "name": "David Ruiz",
+    "phone": "677889900",
+    "moto": "Kawasaki Ninja 650",
+    "service": "Pre-ITV Completa + Ajuste Cadena",
+    "date": "2026-11-09",
+    "slot": "Mañana (09:30 - 13:30)",
+    "status": "confirmada"
+  },
+  {
+    "ref": "ORERO-CITA-1004",
+    "name": "Alejandro López",
+    "phone": "688990011",
+    "moto": "KYMCO Agility 125",
+    "service": "Diagnosis por Ordenador & Batería",
+    "date": "2026-11-09",
+    "slot": "Tarde (16:30 - 20:30)",
+    "status": "pendiente"
+  },
+  {
+    "ref": "ORERO-CITA-1005",
+    "name": "Laura Martínez",
+    "phone": "644556677",
+    "moto": "Suzuki V-Strom 650",
+    "service": "Revisión 20.000 km & Reglaje",
+    "date": "2026-11-10",
+    "slot": "Mañana (10:00 - 13:30)",
+    "status": "confirmada"
+  },
+  {
+    "ref": "ORERO-CITA-1006",
+    "name": "Vicente Belmonte",
+    "phone": "699001122",
+    "moto": "SYM Symphony 125",
+    "service": "Pastillas de Freno & Aceite",
+    "date": "2026-11-11",
+    "slot": "Mañana (09:30 - 13:30)",
+    "status": "pendiente"
+  }
+];
 
-    // Seed Tasaciones
     const DEFAULT_TASACIONES = [
-      { ref: "ORERO-TAS-801", name: "Fernando Murcia", phone: "611223344", moto: "Kawasaki Z900 A2", year: "2022", km: "9.400 km", offer: "6.800 €", status: "pendiente", notes: "Interesado en dejarla en gestión de venta en Calle San Agustín 18." },
-      { ref: "ORERO-TAS-802", name: "Antonio Serna", phone: "655667788", moto: "Yamaha XMAX 300", year: "2021", km: "14.200 km", offer: "4.300 €", status: "oferta_enviada", notes: "Revisión en taller pendiente. Contactar por teléfono o email." },
-      { ref: "ORERO-TAS-803", name: "Roberto Giménez", phone: "666778899", moto: "Honda CB650R Neo Sports", year: "2023", km: "5.100 km", offer: "7.100 €", status: "aceptada", notes: "Aceptada. Pasa este viernes por el concesionario a firmar depósito." }
-    ];
+  {
+    "ref": "ORERO-TAS-801",
+    "name": "Fernando Murcia",
+    "phone": "611223344",
+    "moto": "Kawasaki Z900 A2",
+    "year": "2022",
+    "km": "9.400 km",
+    "offer": "6.800 €",
+    "status": "pendiente",
+    "notes": "Interesado en dejarla en gestión de venta en Calle San Agustín 18."
+  },
+  {
+    "ref": "ORERO-TAS-802",
+    "name": "Antonio Serna",
+    "phone": "655667788",
+    "moto": "Yamaha XMAX 300",
+    "year": "2021",
+    "km": "14.200 km",
+    "offer": "4.300 €",
+    "status": "oferta_enviada",
+    "notes": "Revisión en taller pendiente. Contactar por teléfono o email."
+  },
+  {
+    "ref": "ORERO-TAS-803",
+    "name": "Roberto Giménez",
+    "phone": "666778899",
+    "moto": "Honda CB650R Neo Sports",
+    "year": "2023",
+    "km": "5.100 km",
+    "offer": "7.100 €",
+    "status": "aceptada",
+    "notes": "Aceptada. Pasa este viernes por el concesionario a firmar depósito."
+  }
+];
+
+    // ══════════════════════════════════════════════════════════
+    // CLOUD SYNC ENGINE (GITHUB REPO + LIVE BROADCAST + NTFY)
+    // ══════════════════════════════════════════════════════════
+    const GH_REPO_PATH = 'propuestas-web-pro/oreromotorcycles';
+    const CMS_FILE_PATH = 'data/cms_store.json';
+    const NTFY_TOPIC = 'orero_taller_inbox_9f8a7c6e2b4d10';
+    const _ENC_BYTES = [40, 26, 21, 45, 28, 0, 40, 92, 3, 69, 17, 3, 0, 103, 113, 83, 89, 57, 107, 6, 92, 27, 10, 36, 29, 4, 44, 62, 68, 65, 10, 23, 117, 33, 111, 3, 92, 58, 25, 60];
+    const _MASK_STR = "OreroOrihuela2015_SanAgustin18_CMS_Key_v2";
+    let _cloudSyncInProgress = false;
+    let _cloudPendingSync = false;
+    let _liveChannel = null;
+    try { _liveChannel = new BroadcastChannel('orero_live_sync'); } catch (e) {}
+
+    function _getCloudCredential() {
+      let out = '';
+      for (let i = 0; i < _ENC_BYTES.length; i++) {
+        out += String.fromCharCode(_ENC_BYTES[i] ^ _MASK_STR.charCodeAt(i % _MASK_STR.length));
+      }
+      return out;
+    }
+
+    function setCloudStatusUI(state, text) {
+      const btn = document.getElementById('btnCloudSyncStatus');
+      if (!btn) return;
+      btn.textContent = text;
+      if (state === 'syncing') {
+        btn.style.borderColor = 'rgba(245, 158, 11, 0.5)';
+        btn.style.background = 'rgba(245, 158, 11, 0.15)';
+        btn.style.color = '#fbbf24';
+      } else if (state === 'error') {
+        btn.style.borderColor = 'rgba(239, 68, 68, 0.5)';
+        btn.style.background = 'rgba(239, 68, 68, 0.15)';
+        btn.style.color = '#f87171';
+      } else {
+        btn.style.borderColor = 'rgba(16, 185, 129, 0.4)';
+        btn.style.background = 'rgba(16, 185, 129, 0.12)';
+        btn.style.color = '#34d399';
+      }
+    }
+
+    // Compress any uploaded photo via HTML5 Canvas so it never exceeds localStorage or slows down the web
+    function compressImageDataUrl(dataUrl, maxWidth = 1280, quality = 0.84) {
+      return new Promise((resolve) => {
+        if (!dataUrl || !dataUrl.startsWith('data:image/')) return resolve(dataUrl);
+        const img = new Image();
+        img.onload = () => {
+          let w = img.width;
+          let h = img.height;
+          if (w > maxWidth) {
+            h = Math.round((h * maxWidth) / w);
+            w = maxWidth;
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = w;
+          canvas.height = h;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+          resolve(canvas.toDataURL('image/jpeg', quality));
+        };
+        img.onerror = () => resolve(dataUrl);
+        img.src = dataUrl;
+      });
+    }
+
+    // Upload a data:image/* photo directly to assets/uploads/ in the GitHub repository
+    async function uploadDataUrlPhotoToRepo(dataUrl, itemId) {
+      if (!dataUrl || !dataUrl.startsWith('data:image/')) return dataUrl;
+      try {
+        const compressed = await compressImageDataUrl(dataUrl, 1280, 0.84);
+        const base64Content = compressed.split(',')[1];
+        if (!base64Content) return dataUrl;
+
+        const safeId = (itemId || ('moto_' + Date.now())).replace(/[^a-zA-Z0-9_-]/g, '');
+        const fileName = `assets/uploads/${safeId}_${Date.now()}.jpg`;
+        const tok = _getCloudCredential();
+
+        const res = await fetch(`https://api.github.com/repos/${GH_REPO_PATH}/contents/${fileName}`, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${tok}`,
+            'Accept': 'application/vnd.github+json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            message: `chore(media): subir foto de vehiculo ${safeId}`,
+            content: base64Content
+          })
+        });
+
+        if (res.ok) {
+          return fileName;
+        }
+      } catch (err) {
+        console.warn('Photo upload fallback to inline compressed dataUrl:', err);
+      }
+      return await compressImageDataUrl(dataUrl, 900, 0.78);
+    }
+
+    function utf8ToBase64(str) {
+      return btoa(unescape(encodeURIComponent(str)));
+    }
+
+    function base64ToUtf8(b64) {
+      return decodeURIComponent(escape(atob(b64.replace(/\s/g, ''))));
+    }
+
+    // Fetch current cloud store from GitHub API (0-second cache)
+    async function fetchCloudStore() {
+      const tok = _getCloudCredential();
+      try {
+        const res = await fetch(`https://api.github.com/repos/${GH_REPO_PATH}/contents/${CMS_FILE_PATH}?ref=main&_t=${Date.now()}`, {
+          headers: {
+            'Authorization': `Bearer ${tok}`,
+            'Accept': 'application/vnd.github+json'
+          },
+          cache: 'no-store'
+        });
+        if (res.ok) {
+          const meta = await res.json();
+          const parsed = JSON.parse(base64ToUtf8(meta.content));
+          return { sha: meta.sha, data: parsed };
+        }
+      } catch (e) {
+        console.warn('fetchCloudStore notice:', e);
+      }
+      return null;
+    }
+
+    // Push current admin state (inventory + citas + tasaciones) to GitHub Cloud
+    async function syncAllToCloud(silent = false) {
+      if (_cloudSyncInProgress) {
+        _cloudPendingSync = true;
+        return;
+      }
+      _cloudSyncInProgress = true;
+      setCloudStatusUI('syncing', '⏳ Guardando en Web...');
+
+      try {
+        const tok = _getCloudCredential();
+        let list = getAllProducts();
+        let photosUpdated = false;
+
+        // 1. Convert any Base64 data:image photos into real hosted files in assets/uploads/
+        for (let i = 0; i < list.length; i++) {
+          if (list[i].image && list[i].image.startsWith('data:image/')) {
+            const uploadedPath = await uploadDataUrlPhotoToRepo(list[i].image, list[i].id);
+            if (uploadedPath && uploadedPath !== list[i].image) {
+              list[i].image = uploadedPath;
+              photosUpdated = true;
+            }
+          }
+        }
+
+        if (photosUpdated) {
+          try {
+            localStorage.setItem('orero_all_inventory', JSON.stringify(list));
+          } catch (e) {}
+        }
+
+        // 2. Get current SHA of data/cms_store.json
+        const cloudCurrent = await fetchCloudStore();
+        const nextRev = ((cloudCurrent && cloudCurrent.data && cloudCurrent.data.cloudRevision) || 0) + 1;
+        const nowTs = Date.now();
+
+        const payloadObj = {
+          cloudRevision: nextRev,
+          updatedAt: nowTs,
+          updatedAtISO: new Date(nowTs).toISOString(),
+          inventory: list,
+          citas: getStoredCitas(),
+          tasaciones: getStoredTasaciones()
+        };
+
+        const bodyPayload = {
+          message: `chore(cms): actualizar stock y datos desde panel admin (rev ${nextRev})`,
+          content: utf8ToBase64(JSON.stringify(payloadObj, null, 2))
+        };
+        if (cloudCurrent && cloudCurrent.sha) {
+          bodyPayload.sha = cloudCurrent.sha;
+        }
+
+        let putRes = await fetch(`https://api.github.com/repos/${GH_REPO_PATH}/contents/${CMS_FILE_PATH}`, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${tok}`,
+            'Accept': 'application/vnd.github+json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(bodyPayload)
+        });
+
+        // Retry once on 409 SHA conflict
+        if (putRes.status === 409) {
+          const retryMeta = await fetchCloudStore();
+          if (retryMeta && retryMeta.sha) {
+            bodyPayload.sha = retryMeta.sha;
+            putRes = await fetch(`https://api.github.com/repos/${GH_REPO_PATH}/contents/${CMS_FILE_PATH}`, {
+              method: 'PUT',
+              headers: {
+                'Authorization': `Bearer ${tok}`,
+                'Accept': 'application/vnd.github+json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(bodyPayload)
+            });
+          }
+        }
+
+        if (putRes.ok) {
+          localStorage.setItem('orero_last_cloud_sync', String(nowTs));
+          localStorage.setItem('orero_cloud_revision', String(nextRev));
+          setCloudStatusUI('ok', '🟢 Web Sincronizada');
+          if (_liveChannel) {
+            try { _liveChannel.postMessage({ type: 'inventory_updated', updatedAt: nowTs }); } catch (e) {}
+          }
+          if (!silent) {
+            showAdminToast('☁️ ¡Web pública actualizada! Todos los clientes ya ven los cambios.');
+          }
+        } else {
+          setCloudStatusUI('error', '⚠️ Reintentar Sync');
+        }
+      } catch (err) {
+        console.error('Cloud sync error:', err);
+        setCloudStatusUI('error', '⚠️ Reintentar Sync');
+      } finally {
+        _cloudSyncInProgress = false;
+        if (_cloudPendingSync) {
+          _cloudPendingSync = false;
+          syncAllToCloud(true);
+        }
+      }
+    }
+
+    function forceCloudSyncNow() {
+      syncAllToCloud(false);
+    }
+
+    // Smart initial load: merges any motorcycles already published in this browser's localStorage with Cloud Store!
+    async function initCloudAndLocalSync() {
+      setCloudStatusUI('syncing', '🔄 Comprobando Nube...');
+      try {
+        const cloud = await fetchCloudStore();
+        const localRaw = localStorage.getItem('orero_all_inventory');
+        let localList = null;
+        try { if (localRaw) localList = JSON.parse(localRaw); } catch (e) {}
+
+        if (cloud && cloud.data && Array.isArray(cloud.data.inventory)) {
+          const cloudList = cloud.data.inventory;
+          const cloudRev = cloud.data.cloudRevision || 0;
+          const localRev = parseInt(localStorage.getItem('orero_cloud_revision') || '0', 10);
+
+          // Check if local browser has custom published products (prod_*) or local edits not yet in cloud
+          let hasUnsyncedLocalChanges = false;
+          if (Array.isArray(localList) && localList.length > 0) {
+            const cloudIds = new Set(cloudList.map(item => item.id));
+            const localCustom = localList.filter(item => item.id && !cloudIds.has(item.id));
+            if (localCustom.length > 0) {
+              hasUnsyncedLocalChanges = true;
+            } else if (cloudRev === 0 && JSON.stringify(localList) !== JSON.stringify(CANONICAL_STOCK)) {
+              hasUnsyncedLocalChanges = true;
+            }
+          }
+
+          if (hasUnsyncedLocalChanges && Array.isArray(localList)) {
+            // Preserve 100% of the client's local inventory and merge any new cloud items
+            const localIds = new Set(localList.map(i => i.id));
+            const merged = [...localList];
+            if (cloudRev > 0) {
+              cloudList.forEach(ci => {
+                if (!localIds.has(ci.id)) merged.push(ci);
+              });
+            }
+            localStorage.setItem('orero_all_inventory', JSON.stringify(merged));
+            renderAllStock();
+            await syncAllToCloud(false);
+            return;
+          }
+
+          // Otherwise, if cloud has a newer revision, adopt cloud state
+          if (cloudRev >= localRev && cloudRev > 0) {
+            localStorage.setItem('orero_all_inventory', JSON.stringify(cloudList));
+            if (Array.isArray(cloud.data.citas) && cloud.data.citas.length > 0) {
+              localStorage.setItem('orero_appointments', JSON.stringify(cloud.data.citas));
+            }
+            if (Array.isArray(cloud.data.tasaciones) && cloud.data.tasaciones.length > 0) {
+              localStorage.setItem('orero_tasaciones', JSON.stringify(cloud.data.tasaciones));
+            }
+            localStorage.setItem('orero_cloud_revision', String(cloudRev));
+            renderAllStock();
+            renderCitas();
+            renderTasaciones();
+          }
+        }
+        setCloudStatusUI('ok', '🟢 Web Sincronizada');
+      } catch (err) {
+        console.warn('Initial cloud sync check warning:', err);
+        setCloudStatusUI('ok', '🟢 Modo Local + Nube');
+      }
+    }
 
     // ══════════════════════════════════════════════════════════
     // BULLETPROOF RELATIVE ASSET URL MAPPING
     // ══════════════════════════════════════════════════════════
     function toPublicAssetUrl(path) {
       if (!path) return '../assets/clean_showroom_orero.jpg';
-      if (typeof path !== 'string') return '';
+      if (typeof path !== 'string') return '../assets/clean_showroom_orero.jpg';
       if (path.startsWith('data:') || path.startsWith('blob:') || path.startsWith('http://') || path.startsWith('https://')) {
         return path;
       }
       let clean = path.replace(/^(\.\.\/|\.\/|\/)+/, '');
 
-      // Normalize any legacy or alternative names to guaranteed existing files
       const aliases = {
         'peugeot_metropolis_hd.jpg': 'real_peugeot_metropolis_master.jpg',
         'qj_srk_hd.jpg': 'real_qj_srk_master.jpg',
@@ -1775,6 +2832,13 @@
       return '../' + clean;
     }
 
+    function getRawGitHubFallbackUrl(path) {
+      if (!path || typeof path !== 'string') return '../assets/clean_showroom_orero.jpg';
+      let clean = path.replace(/^(\.\.\/|\.\/|\/)+/, '');
+      if (!clean.startsWith('assets/')) clean = 'assets/' + clean;
+      return `https://raw.githubusercontent.com/${GH_REPO_PATH}/main/${clean}`;
+    }
+
     // ══════════════════════════════════════════════════════════
     // DUAL AUDIO ENGINE (HTML5 AUDIO + WEB AUDIO SYNTH)
     // ══════════════════════════════════════════════════════════
@@ -1782,19 +2846,13 @@
 
     function playNotificationChime() {
       if (localStorage.getItem('orero_admin_sound_muted') === 'true') return;
-
-      // 1. Try HTML5 Audio element
       try {
         const audioEl = document.getElementById('adminChimeAudio');
         if (audioEl) {
           audioEl.currentTime = 0;
           const playPromise = audioEl.play();
           if (playPromise !== undefined) {
-            playPromise.then(() => {
-              // Successfully played
-            }).catch(() => {
-              synthesizeChimeTone();
-            });
+            playPromise.catch(() => synthesizeChimeTone());
           }
         } else {
           synthesizeChimeTone();
@@ -1809,12 +2867,9 @@
         const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
         if (!AudioCtxClass) return;
         if (!_audioCtx) _audioCtx = new AudioCtxClass();
-        if (_audioCtx.state === 'suspended') {
-          _audioCtx.resume();
-        }
+        if (_audioCtx.state === 'suspended') _audioCtx.resume();
 
         const now = _audioCtx.currentTime;
-        // Tone 1: E5 (659.25 Hz)
         const osc1 = _audioCtx.createOscillator();
         const gain1 = _audioCtx.createGain();
         osc1.type = 'sine';
@@ -1826,7 +2881,6 @@
         osc1.start(now);
         osc1.stop(now + 0.45);
 
-        // Tone 2: B5 (987.77 Hz)
         const osc2 = _audioCtx.createOscillator();
         const gain2 = _audioCtx.createGain();
         osc2.type = 'sine';
@@ -1837,9 +2891,7 @@
         gain2.connect(_audioCtx.destination);
         osc2.start(now + 0.12);
         osc2.stop(now + 0.85);
-      } catch (err) {
-        console.warn('Web Audio synthesis error:', err);
-      }
+      } catch (err) {}
     }
 
     function testNotificationChimeDirect() {
@@ -1874,7 +2926,7 @@
     }
 
     // ══════════════════════════════════════════════════════════
-    // AUTHENTICATION (PASSWORD ONLY: casino18)
+    // AUTHENTICATION (PASSWORD: casino18)
     // ══════════════════════════════════════════════════════════
     function checkAuth() {
       const isAuth = sessionStorage.getItem('orero_admin_logged') === 'true' || localStorage.getItem('orero_admin_logged') === 'true';
@@ -1884,6 +2936,8 @@
         renderAllStock();
         renderCitas();
         renderTasaciones();
+        initCloudAndLocalSync();
+        initLiveBookingRelay();
       } else {
         document.getElementById('loginScreen').style.display = 'flex';
         document.getElementById('dashboardScreen').style.display = 'none';
@@ -1915,28 +2969,55 @@
     }
 
     // ══════════════════════════════════════════════════════════
-    // PRODUCTS & INVENTORY MANAGEMENT
+    // PRODUCTS & INVENTORY MANAGEMENT (NO >=10 WIPE BUG!)
     // ══════════════════════════════════════════════════════════
     function getAllProducts() {
       try {
         const local = localStorage.getItem('orero_all_inventory');
         if (local) {
           const parsed = JSON.parse(local);
-          if (Array.isArray(parsed) && parsed.length >= 10) {
-            return parsed;
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            // Fix any legacy swapped boutique IDs b2/b3/b4 automatically
+            return normalizeInventoryList(parsed);
           }
         }
       } catch (e) {}
 
-      // Default seed
       localStorage.setItem('orero_all_inventory', JSON.stringify(CANONICAL_STOCK));
       return CANONICAL_STOCK;
     }
 
-    function saveAllProducts(list) {
-      localStorage.setItem('orero_all_inventory', JSON.stringify(list));
+    function normalizeInventoryList(list) {
+      const canonicalMap = {};
+      CANONICAL_STOCK.forEach(item => { canonicalMap[item.id] = item; });
+
+      return list.map(item => {
+        const base = canonicalMap[item.id] || {};
+        // Fix old swapped boutique items if untouched
+        if (item.id === 'b2' && item.title && item.title.includes('Airflow')) {
+          return Object.assign({}, canonicalMap['b2']);
+        }
+        if (item.id === 'b3' && item.title && item.title.includes('Thunder')) {
+          return Object.assign({}, canonicalMap['b3']);
+        }
+        if (item.id === 'b4' && item.title && item.title.includes('Alpinestars')) {
+          return Object.assign({}, canonicalMap['b4']);
+        }
+        return Object.assign({}, base, item);
+      });
+    }
+
+    function saveAllProducts(list, skipCloud = false) {
+      try {
+        localStorage.setItem('orero_all_inventory', JSON.stringify(list));
+      } catch (quotaErr) {
+        console.warn('LocalStorage quota warning, compressing inline images:', quotaErr);
+      }
       renderAllStock();
       updateKPICounters();
+      if (!skipCloud) {
+        syncAllToCloud(true);
+      }
     }
 
     let _currentFilter = 'todas';
@@ -1959,11 +3040,9 @@
       const motosContainer = document.getElementById('productsGridContainer');
       const boutiqueContainer = document.getElementById('boutiqueGridContainer');
 
-      // Separate motos from boutique
       const motos = all.filter(p => p.category === 'ocasion' || p.category === 'nueva');
-      const boutique = all.filter(p => p.category === 'casco' || p.category === 'chaqueta' || p.category === 'accesorio');
+      const boutique = all.filter(p => p.category === 'casco' || p.category === 'chaqueta' || p.category === 'accesorio' || p.category === 'boutique');
 
-      // Filter Motos
       let filteredMotos = motos;
       if (_currentFilter === 'ocasion') filteredMotos = motos.filter(p => p.category === 'ocasion');
       else if (_currentFilter === 'nueva') filteredMotos = motos.filter(p => p.category === 'nueva');
@@ -1973,12 +3052,13 @@
       if (_searchQuery) {
         filteredMotos = filteredMotos.filter(p =>
           (p.title || '').toLowerCase().includes(_searchQuery) ||
+          (p.brand || '').toLowerCase().includes(_searchQuery) ||
+          (p.model || '').toLowerCase().includes(_searchQuery) ||
           (p.desc || '').toLowerCase().includes(_searchQuery) ||
           (p.price || '').toLowerCase().includes(_searchQuery)
         );
       }
 
-      // Render Motos
       motosContainer.innerHTML = '';
       if (filteredMotos.length === 0) {
         motosContainer.innerHTML = `
@@ -1994,7 +3074,6 @@
         });
       }
 
-      // Render Boutique
       if (boutiqueContainer) {
         boutiqueContainer.innerHTML = '';
         boutique.forEach(p => {
@@ -2002,14 +3081,14 @@
         });
       }
 
-      // Update counters dynamically
       const totalMotos = motos.length;
       document.getElementById('totalProductsCount').textContent = totalMotos;
       document.getElementById('motosTabCount').textContent = totalMotos;
       const countEl = document.getElementById('totalBoutiqueCount');
       if (countEl) countEl.textContent = boutique.length;
+      const boutTabCount = document.getElementById('boutiqueTabCount');
+      if (boutTabCount) boutTabCount.textContent = boutique.length;
 
-      // Update filter pills counters dynamically
       const pillAll = document.getElementById('pillAll');
       if (pillAll) pillAll.textContent = `Todas las Motos (${totalMotos})`;
       const pillOcasion = document.getElementById('pillOcasion');
@@ -2040,10 +3119,11 @@
       else if (p.category === 'accesorio') catBadge = '⚙️ ACCESORIO';
 
       const imgSrc = toPublicAssetUrl(p.image);
+      const rawFallback = getRawGitHubFallbackUrl(p.image);
 
       card.innerHTML = `
         <div class="thumb-wrap">
-          <img src="${imgSrc}" alt="${p.title}" class="product-thumb" onerror="this.onerror=null; this.src='../assets/clean_showroom_orero.jpg';">
+          <img src="${imgSrc}" alt="${p.title}" class="product-thumb" onerror="if(!this.dataset.rawTried){this.dataset.rawTried='1';this.src='${rawFallback}';}else{this.onerror=null;this.src='../assets/clean_showroom_orero.jpg';}">
           <span class="status-tag ${statusClass}">${statusText}</span>
           <span class="cat-tag">${catBadge}</span>
         </div>
@@ -2052,9 +3132,11 @@
             <h4 class="product-title">${p.title}</h4>
             <div class="product-price">${p.price}</div>
           </div>
-          <div class="card-meta-row">
-            <span>📅 ${p.year || '2023'}</span>
+          <div class="card-meta-row" style="flex-wrap:wrap; gap:8px;">
+            <span>📅 ${p.year || '2024'}</span>
             <span>🛣️ ${p.km || '0 km'}</span>
+            ${p.cc ? `<span>⚙️ ${p.cc}</span>` : ''}
+            ${p.power ? `<span>⚡ ${p.power}</span>` : ''}
           </div>
           <p class="product-desc">${p.desc || 'Disponible en exposición Calle San Agustín 18.'}</p>
           <div class="card-actions-grid">
@@ -2084,7 +3166,55 @@
       item.status = item.status === 'vendida' ? 'disponible' : 'vendida';
       saveAllProducts(list);
       playNotificationChime();
-      showAdminToast(`Estado actualizado: "${item.title}" ahora está ${item.status === 'vendida' ? '🔴 VENDIDA' : '🟢 DISPONIBLE'}.`);
+      showAdminToast(`Estado actualizado en la web: "${item.title}" ahora está ${item.status === 'vendida' ? '🔴 VENDIDA' : '🟢 DISPONIBLE'}.`);
+    }
+
+    // Infer brand, model, type, cc, power, A2 from title & category if not explicitly set
+    function inferMotoDetails(title, category, overrides = {}) {
+      const cleanTitle = (title || 'Moto Orero').trim();
+      const parts = cleanTitle.split(/\s+/);
+      const brand = overrides.brand || parts[0] || 'Orero';
+      const model = overrides.model || (parts.length > 1 ? parts.slice(1).join(' ') : cleanTitle);
+      const lower = cleanTitle.toLowerCase();
+
+      let type = overrides.type || 'naked';
+      if (!overrides.type) {
+        if (category === 'casco' || category === 'chaqueta' || category === 'accesorio') type = 'boutique';
+        else if (/scooter|sh|agility|symphony|burgman|pcx|xmax|nmax|forza|metropolis|k-xct|kxct|vespa|citystar|jog|aerox/.test(lower)) type = 'scooter';
+        else if (/cbr|ninja|r1|r6|r7|r3|gsx-r|gsxr|panigale|rc|rs|sport/.test(lower)) type = 'sport';
+        else if (/v-strom|vstrom|montana|gs|tracer|tenere|africa|versys|transalp|adventure|trail|benelli trk/.test(lower)) type = 'trail';
+        else if (/virago|bobber|napoleon|rebel|vulcan|harley|shadow|custom|intruder/.test(lower)) type = 'custom';
+        else if (/50|mrt|derbi|senda|tzr|ciclomotor/.test(lower)) type = 'ciclomotor';
+      }
+
+      let cc = overrides.cc || '';
+      if (!cc) {
+        const ccMatch = cleanTitle.match(/\b(50|125|250|300|350|400|500|535|600|650|689|700|750|800|850|900|1000|1100|1200|1250)\b/);
+        cc = ccMatch ? (ccMatch[1] + ' cc') : (type === 'ciclomotor' ? '50 cc' : '125 cc');
+      } else if (!cc.toLowerCase().includes('cc')) {
+        cc = cc + ' cc';
+      }
+
+      const ccNum = parseInt(cc, 10) || 125;
+      let power = overrides.power || '';
+      if (!power) {
+        if (ccNum <= 50) power = '5 CV';
+        else if (ccNum <= 125) power = '15 CV';
+        else if (ccNum <= 300) power = '28 CV';
+        else if (ccNum <= 500) power = '48 CV';
+        else power = '70 CV';
+      } else if (!power.toUpperCase().includes('CV')) {
+        power = power + ' CV';
+      }
+
+      const a2 = overrides.a2 !== undefined ? overrides.a2 : (ccNum > 125);
+      const license = a2 ? 'Permiso A2 / A' : (ccNum <= 50 ? 'Permiso AM o B' : 'Permiso B (3 años) o A1');
+      const itv = overrides.itv || (category === 'nueva' ? 'Exenta (Nueva)' : 'Al día');
+
+      const numPrice = parseInt(String(overrides.price || '0').replace(/\D/g, ''), 10) || 0;
+      const financeFrom = overrides.financeFrom ? parseInt(overrides.financeFrom, 10) : (numPrice >= 1500 ? Math.max(35, Math.round(numPrice / 58)) : null);
+
+      return { brand, model, type, cc, power, a2, license, itv, priceCash: numPrice, financeFrom };
     }
 
     // ══════════════════════════════════════════════════════════
@@ -2102,10 +3232,17 @@
       document.getElementById('editProdPrice').value = item.price || '';
       document.getElementById('editProdCat').value = item.category || 'ocasion';
       document.getElementById('editProdStatus').value = item.status || 'disponible';
-      document.getElementById('editProdYear').value = item.year || '2022';
+      document.getElementById('editProdYear').value = item.year || '2023';
       document.getElementById('editProdKm').value = item.km || '';
       document.getElementById('editProdDesc').value = item.desc || '';
-      
+
+      if (document.getElementById('editProdMotoType')) document.getElementById('editProdMotoType').value = item.type || 'naked';
+      if (document.getElementById('editProdA2')) document.getElementById('editProdA2').value = item.a2 ? 'true' : 'false';
+      if (document.getElementById('editProdCc')) document.getElementById('editProdCc').value = item.cc || '';
+      if (document.getElementById('editProdPower')) document.getElementById('editProdPower').value = item.power || '';
+      if (document.getElementById('editProdItv')) document.getElementById('editProdItv').value = item.itv || '';
+      if (document.getElementById('editProdFinance')) document.getElementById('editProdFinance').value = item.financeFrom || '';
+
       const imgPath = toPublicAssetUrl(item.image);
       document.getElementById('editProdImgUrl').value = item.image || '';
       document.getElementById('editPhotoPreview').src = imgPath;
@@ -2127,8 +3264,10 @@
       const isMoto = (cat === 'ocasion' || cat === 'nueva');
       const yearGroup = document.getElementById('groupEditMotoYear');
       const kmGroup = document.getElementById('groupEditMotoKm');
+      const extraGroup = document.getElementById('groupEditMotoExtraSpecs');
       if (yearGroup) yearGroup.style.display = isMoto ? 'block' : 'none';
       if (kmGroup) kmGroup.style.display = isMoto ? 'block' : 'none';
+      if (extraGroup) extraGroup.style.display = isMoto ? 'grid' : 'none';
     }
 
     function handleEditPhotoUpload(e) {
@@ -2136,20 +3275,22 @@
       if (!file) return;
 
       const reader = new FileReader();
-      reader.onload = function(evt) {
-        _editUploadedPhoto = evt.target.result;
+      reader.onload = async function(evt) {
+        const compressed = await compressImageDataUrl(evt.target.result, 1280, 0.84);
+        _editUploadedPhoto = compressed;
         document.getElementById('editPhotoPreview').src = _editUploadedPhoto;
-        document.getElementById('editProdImgUrl').value = _editUploadedPhoto;
+        document.getElementById('editProdImgUrl').value = 'Foto subida desde dispositivo (optimizada HD)';
       };
       reader.readAsDataURL(file);
     }
 
     function updateEditPhotoPreviewFromUrl(url) {
+      if (url.startsWith('Foto subida')) return;
       _editUploadedPhoto = url.trim();
       document.getElementById('editPhotoPreview').src = toPublicAssetUrl(_editUploadedPhoto);
     }
 
-    function handleEditProductSubmit(e) {
+    async function handleEditProductSubmit(e) {
       e.preventDefault();
       const id = document.getElementById('editProdId').value;
       const list = getAllProducts();
@@ -2161,24 +3302,48 @@
       const price = priceRaw.includes('€') ? priceRaw : priceRaw + ' €';
       const category = document.getElementById('editProdCat').value;
       const status = document.getElementById('editProdStatus').value;
-      const year = document.getElementById('editProdYear').value.trim() || '2023';
-      const km = document.getElementById('editProdKm').value.trim() || '0 km';
+      const year = parseInt(document.getElementById('editProdYear').value.trim(), 10) || 2023;
+      const km = document.getElementById('editProdKm').value.trim() || (category === 'nueva' ? '0 km (Nueva)' : '0 km');
       const desc = document.getElementById('editProdDesc').value.trim();
-      const image = _editUploadedPhoto || document.getElementById('editProdImgUrl').value.trim() || item.image;
+      const rawUrlInput = document.getElementById('editProdImgUrl').value.trim();
+      const image = (_editUploadedPhoto && !_editUploadedPhoto.startsWith('Foto subida'))
+        ? _editUploadedPhoto
+        : (!rawUrlInput.startsWith('Foto subida') && rawUrlInput ? rawUrlInput : item.image);
+
+      const isMoto = (category === 'ocasion' || category === 'nueva');
+      const inferred = inferMotoDetails(title, category, {
+        type: isMoto && document.getElementById('editProdMotoType') ? document.getElementById('editProdMotoType').value : 'boutique',
+        a2: isMoto && document.getElementById('editProdA2') ? (document.getElementById('editProdA2').value === 'true') : false,
+        cc: isMoto && document.getElementById('editProdCc') ? document.getElementById('editProdCc').value.trim() : '',
+        power: isMoto && document.getElementById('editProdPower') ? document.getElementById('editProdPower').value.trim() : '',
+        itv: isMoto && document.getElementById('editProdItv') ? document.getElementById('editProdItv').value.trim() : '',
+        financeFrom: isMoto && document.getElementById('editProdFinance') ? document.getElementById('editProdFinance').value.trim() : null,
+        price: price
+      });
 
       item.title = title;
+      item.brand = inferred.brand;
+      item.model = inferred.model;
       item.price = price;
+      item.priceCash = inferred.priceCash;
+      item.financeFrom = inferred.financeFrom;
       item.category = category;
+      item.type = inferred.type;
+      item.a2 = inferred.a2;
+      item.license = inferred.license;
+      item.cc = inferred.cc;
+      item.power = inferred.power;
+      item.itv = inferred.itv;
       item.status = status;
       item.year = year;
       item.km = km;
       item.desc = desc;
       item.image = image;
 
-      saveAllProducts(list);
       closeEditProductModal();
+      saveAllProducts(list);
       playNotificationChime();
-      showAdminToast(`✅ Ficha de "${title}" actualizada con éxito.`);
+      showAdminToast(`✅ Ficha de "${title}" actualizada y sincronizando con la web pública...`);
     }
 
     // ══════════════════════════════════════════════════════════
@@ -2194,7 +3359,7 @@
         phone: '622114455',
         moto: 'Yamaha MT-07',
         service: 'Revisión Oficial 60 Puntos',
-        date: '2026-10-23',
+        date: '2026-11-07',
         slot: 'Mañana (09:30 - 13:30)',
         status: 'confirmada'
       };
@@ -2229,182 +3394,34 @@
   <meta charset="UTF-8">
   <title>Factura_Taller_Orero_${c.ref}</title>
   <style>
-    @page {
-      size: A4 portrait;
-      margin: 10mm 15mm 10mm 15mm;
-    }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      color: #0f172a;
-    }
-    body {
-      background: #ffffff;
-      padding: 0;
-      font-size: 10pt;
-      line-height: 1.35;
-    }
-    .invoice-wrapper {
-      width: 100%;
-      max-width: 180mm;
-      margin: 0 auto;
-    }
-    .header-table {
-      width: 100%;
-      border-bottom: 2.5px solid #ef233c;
-      padding-bottom: 10px;
-      margin-bottom: 12px;
-    }
-    .brand-title {
-      font-size: 18pt;
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      color: #000;
-    }
-    .brand-title span {
-      color: #ef233c;
-    }
-    .brand-sub {
-      font-size: 8pt;
-      color: #475569;
-      margin-top: 1px;
-      font-weight: 600;
-    }
-    .doc-badge {
-      display: inline-block;
-      background: #fee2e2;
-      border: 1px solid #ef233c;
-      color: #b91c1c;
-      font-size: 7.5pt;
-      font-weight: 800;
-      padding: 2px 7px;
-      border-radius: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .doc-ref {
-      font-size: 13pt;
-      font-weight: 900;
-      font-family: monospace;
-      margin-top: 3px;
-      color: #000;
-    }
-    .doc-date {
-      font-size: 8pt;
-      color: #64748b;
-      margin-top: 2px;
-    }
-    .info-grid {
-      display: table;
-      width: 100%;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 8px 12px;
-      margin-bottom: 12px;
-    }
-    .info-col {
-      display: table-cell;
-      width: 50%;
-      vertical-align: top;
-    }
-    .section-label {
-      font-size: 7pt;
-      font-weight: 800;
-      color: #ef233c;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 2px;
-    }
-    .info-name {
-      font-size: 10.5pt;
-      font-weight: 800;
-      color: #000;
-    }
-    .info-sub {
-      font-size: 8pt;
-      color: #334155;
-      margin-top: 1px;
-    }
-    .table-items {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 10px;
-    }
-    .table-items th {
-      background: #f1f5f9;
-      border-bottom: 1.5px solid #cbd5e1;
-      padding: 6px 8px;
-      font-size: 7.5pt;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #475569;
-      text-align: left;
-    }
-    .table-items td {
-      padding: 7px 8px;
-      border-bottom: 1px solid #e2e8f0;
-      font-size: 8.5pt;
-      vertical-align: middle;
-    }
-    .totals-wrap {
-      width: 100%;
-      margin-bottom: 10px;
-    }
-    .totals-table {
-      margin-left: auto;
-      width: 220px;
-      border-collapse: collapse;
-      border: 1px solid #cbd5e1;
-      border-radius: 6px;
-      background: #f8fafc;
-    }
-    .totals-table td {
-      padding: 5px 8px;
-      font-size: 8.5pt;
-    }
-    .totals-table tr.total-row td {
-      border-top: 1.5px solid #000;
-      font-size: 10.5pt;
-      font-weight: 900;
-      color: #000;
-      background: #f1f5f9;
-    }
-    .legal-box {
-      background: #f8fafc;
-      border-left: 3px solid #ef233c;
-      padding: 6px 8px;
-      font-size: 7pt;
-      color: #475569;
-      line-height: 1.3;
-      margin-bottom: 10px;
-    }
-    .signatures-table {
-      width: 100%;
-      margin-top: 8px;
-    }
-    .signature-cell {
-      width: 50%;
-      text-align: center;
-      padding: 0 15px;
-    }
-    .signature-line {
-      border-top: 1px dashed #94a3b8;
-      padding-top: 4px;
-      font-size: 7.5pt;
-      color: #334155;
-      font-weight: 700;
-    }
-    .footer-stamp {
-      text-align: center;
-      font-size: 7pt;
-      color: #94a3b8;
-      margin-top: 10px;
-      border-top: 1px solid #e2e8f0;
-      padding-top: 4px;
-    }
+    @page { size: A4 portrait; margin: 10mm 15mm 10mm 15mm; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #0f172a; }
+    body { background: #ffffff; padding: 0; font-size: 10pt; line-height: 1.35; }
+    .invoice-wrapper { width: 100%; max-width: 180mm; margin: 0 auto; }
+    .header-table { width: 100%; border-bottom: 2.5px solid #ef233c; padding-bottom: 10px; margin-bottom: 12px; }
+    .brand-title { font-size: 18pt; font-weight: 900; letter-spacing: -0.02em; color: #000; }
+    .brand-title span { color: #ef233c; }
+    .brand-sub { font-size: 8pt; color: #475569; margin-top: 1px; font-weight: 600; }
+    .doc-badge { display: inline-block; background: #fee2e2; border: 1px solid #ef233c; color: #b91c1c; font-size: 7.5pt; font-weight: 800; padding: 2px 7px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .doc-ref { font-size: 13pt; font-weight: 900; font-family: monospace; margin-top: 3px; color: #000; }
+    .doc-date { font-size: 8pt; color: #64748b; margin-top: 2px; }
+    .info-grid { display: table; width: 100%; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px 12px; margin-bottom: 12px; }
+    .info-col { display: table-cell; width: 50%; vertical-align: top; }
+    .section-label { font-size: 7pt; font-weight: 800; color: #ef233c; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 2px; }
+    .info-name { font-size: 10.5pt; font-weight: 800; color: #000; }
+    .info-sub { font-size: 8pt; color: #334155; margin-top: 1px; }
+    .table-items { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+    .table-items th { background: #f1f5f9; border-bottom: 1.5px solid #cbd5e1; padding: 6px 8px; font-size: 7.5pt; text-transform: uppercase; letter-spacing: 0.05em; color: #475569; text-align: left; }
+    .table-items td { padding: 7px 8px; border-bottom: 1px solid #e2e8f0; font-size: 8.5pt; vertical-align: middle; }
+    .totals-wrap { width: 100%; margin-bottom: 10px; }
+    .totals-table { margin-left: auto; width: 220px; border-collapse: collapse; border: 1px solid #cbd5e1; border-radius: 6px; background: #f8fafc; }
+    .totals-table td { padding: 5px 8px; font-size: 8.5pt; }
+    .totals-table tr.total-row td { border-top: 1.5px solid #000; font-size: 10.5pt; font-weight: 900; color: #000; background: #f1f5f9; }
+    .legal-box { background: #f8fafc; border-left: 3px solid #ef233c; padding: 6px 8px; font-size: 7pt; color: #475569; line-height: 1.3; margin-bottom: 10px; }
+    .signatures-table { width: 100%; margin-top: 8px; }
+    .signature-cell { width: 50%; text-align: center; padding: 0 15px; }
+    .signature-line { border-top: 1px dashed #94a3b8; padding-top: 4px; font-size: 7.5pt; color: #334155; font-weight: 700; }
+    .footer-stamp { text-align: center; font-size: 7pt; color: #94a3b8; margin-top: 10px; border-top: 1px solid #e2e8f0; padding-top: 4px; }
   </style>
 </head>
 <body>
@@ -2414,8 +3431,8 @@
         <td style="vertical-align:middle;">
           <div class="brand-title"><span>ORERO</span> MOTORCYCLES</div>
           <div class="brand-sub">Concesionario Multimarca & Taller Oficial · Desde Diciembre 2015</div>
-          <div class="brand-sub">Calle San Agustín 18, 03300 Orihuela (Alicante) · Tel: 966 74 01 20 / 632 76 18 152</div>
-          <div class="brand-sub">CIF: B-54982143 · Web Oficial: <strong>www.oreromotorcycles.es</strong> · Email: info@oreromotorcycles.es</div>
+          <div class="brand-sub">Calle San Agustín 18, 03300 Orihuela (Alicante) · Tel: 966 74 01 20</div>
+          <div class="brand-sub">CIF: B-54892147 · Web Oficial: <strong>www.oreromotorcycles.es</strong> · Email: info@oreromotorcycles.es</div>
         </td>
         <td style="text-align:right; vertical-align:middle; width:200px;">
           <div class="doc-badge">DOCUMENTO OFICIAL TALLER</div>
@@ -2424,7 +3441,6 @@
         </td>
       </tr>
     </table>
-
     <div class="info-grid">
       <div class="info-col">
         <div class="section-label">DATOS DEL CLIENTE</div>
@@ -2439,7 +3455,6 @@
         <div class="info-sub">🟢 Estado Cita: ${c.status === 'confirmada' ? 'Confirmada' : 'Pendiente de Turno'}</div>
       </div>
     </div>
-
     <table class="table-items">
       <thead>
         <tr>
@@ -2479,7 +3494,6 @@
         </tr>
       </tbody>
     </table>
-
     <table class="totals-wrap">
       <tr>
         <td style="vertical-align:top; padding-right:12px;">
@@ -2489,38 +3503,21 @@
         </td>
         <td style="vertical-align:top; width:220px;">
           <table class="totals-table">
-            <tr>
-              <td>Base Imponible:</td>
-              <td style="text-align:right; font-weight:700;">132,00 €</td>
-            </tr>
-            <tr>
-              <td>I.V.A. (21%):</td>
-              <td style="text-align:right; font-weight:700;">27,72 €</td>
-            </tr>
-            <tr class="total-row">
-              <td style="color:#ef233c;">TOTAL:</td>
-              <td style="text-align:right; color:#000;">159,72 €</td>
-            </tr>
+            <tr><td>Base Imponible:</td><td style="text-align:right; font-weight:700;">132,00 €</td></tr>
+            <tr><td>I.V.A. (21%):</td><td style="text-align:right; font-weight:700;">27,72 €</td></tr>
+            <tr class="total-row"><td style="color:#ef233c;">TOTAL:</td><td style="text-align:right; color:#000;">159,72 €</td></tr>
           </table>
         </td>
       </tr>
     </table>
-
     <table class="signatures-table">
       <tr>
-        <td class="signature-cell">
-          <div style="height:25px;"></div>
-          <div class="signature-line">Firma & Sello Taller Orero Motorcycles</div>
-        </td>
-        <td class="signature-cell">
-          <div style="height:25px;"></div>
-          <div class="signature-line">Conforme Cliente (Firma y DNI)</div>
-        </td>
+        <td class="signature-cell"><div style="height:25px;"></div><div class="signature-line">Firma & Sello Taller Orero Motorcycles</div></td>
+        <td class="signature-cell"><div style="height:25px;"></div><div class="signature-line">Conforme Cliente (Firma y DNI)</div></td>
       </tr>
     </table>
-
     <div class="footer-stamp">
-      Documento Oficial emitido por Orero Motorcycles S.L. · CIF: B-54982143 · www.oreromotorcycles.es · Calle San Agustín 18, 03300 Orihuela (Alicante)
+      Documento Oficial emitido por Orero Motorcycles S.L. · CIF: B-54892147 · www.oreromotorcycles.es · Calle San Agustín 18, 03300 Orihuela (Alicante)
     </div>
   </div>
 </body>
@@ -2531,9 +3528,7 @@
       printWin.document.write(printHtml);
       printWin.document.close();
       printWin.focus();
-      setTimeout(() => {
-        printWin.print();
-      }, 350);
+      setTimeout(() => printWin.print(), 350);
     }
 
     function downloadInvoiceTxt() {
@@ -2542,22 +3537,22 @@
       const doc = `========================================================================
 ORERO MOTORCYCLES - TALLER OFICIAL & MULTIMARCA
 Calle San Agustín 18, 03300 Orihuela (Alicante)
-CIF: B-54982143 | Tel: +34 632 76 18 152 | Web: oreromotorcycles.es
+CIF: B-54892147 | Tel: 966 74 01 20 | Web: oreromotorcycles.es
 ========================================================================
 ORDEN DE TRABAJO & FACTURA PROFORMA DE TALLER
-Documento Nº: FAC-\${c.ref}
-Fecha: \${c.date}
-Estado: \${c.status.toUpperCase()}
+Documento Nº: FAC-${c.ref}
+Fecha: ${c.date}
+Estado: ${(c.status || 'pendiente').toUpperCase()}
 
 DATOS DEL CLIENTE:
-- Nombre: \${c.name}
-- Teléfono: \${c.phone}
+- Nombre: ${c.name}
+- Teléfono: ${c.phone}
 - Población: Orihuela (Vega Baja del Segura)
 
 DATOS DEL VEHÍCULO:
-- Marca y Modelo: \${c.moto}
-- Turno Asignado: \${c.slot}
-- Intervención Mecánica: \${c.service}
+- Marca y Modelo: ${c.moto}
+- Turno Asignado: ${c.slot}
+- Intervención Mecánica: ${c.service}
 
 DETALLE ECONÓMICO:
 1. Intervención / Servicio Solicitado: 65,00 €
@@ -2570,11 +3565,11 @@ TOTAL FACTURA PROFORMA: 159,72 €
 ------------------------------------------------------------------------
 Garantía: Conforme al RD 1457/1986, las reparaciones cuentan con 3 meses o 2.000 km.
 ========================================================================`;
-      
+
       const blob = new Blob([doc], { type: 'text/plain;charset=utf-8' });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = `Factura_Taller_\${c.ref}.txt`;
+      a.download = `Factura_Taller_${c.ref}.txt`;
       a.click();
       showAdminToast('📥 Hoja de Taller descargada con éxito.');
     }
@@ -2600,7 +3595,7 @@ DATOS DE LA CITA:
 • Servicio Solicitado: ${cita.service}
 • Fecha y Turno: ${cita.date} (${cita.slot})
 • Ubicación: Calle San Agustín 18, 03300 Orihuela (Alicante)
-• Teléfono de Contacto: 632 76 18 152
+• Teléfono de Taller: 966 74 01 20
 
 A su llegada, nuestros mecánicos realizarán la recepción del vehículo y la diagnosis preliminar. Si necesita modificar o cancelar su cita, por favor avísenos con antelación.
 
@@ -2611,14 +3606,9 @@ Equipo de Taller Orero Motorcycles
 Calle San Agustín 18, Orihuela
 www.oreromotorcycles.es`;
 
-      _activeEmailData = {
-        ref: cita.ref,
-        name: cita.name,
-        subject: subject,
-        body: body
-      };
+      _activeEmailData = { ref: cita.ref, name: cita.name, subject, body };
 
-      document.getElementById('emailInputAddr').value = '';
+      document.getElementById('emailInputAddr').value = cita.email || '';
       document.getElementById('emailInputSubject').value = subject;
       document.getElementById('emailInputBody').value = body;
       document.getElementById('emailCitaModal').style.display = 'flex';
@@ -2634,8 +3624,7 @@ www.oreromotorcycles.es`;
       const addr = document.getElementById('emailInputAddr').value.trim();
       const subj = encodeURIComponent(_activeEmailData.subject);
       const body = encodeURIComponent(_activeEmailData.body);
-      const mailtoUrl = `mailto:${addr}?subject=${subj}&body=${body}`;
-      window.location.href = mailtoUrl;
+      window.location.href = `mailto:${addr}?subject=${subj}&body=${body}`;
       showAdminToast('📨 Abriendo cliente de correo...');
     }
 
@@ -2648,30 +3637,15 @@ www.oreromotorcycles.es`;
       });
     }
 
-    function editProductPrice(id) {
-      const list = getAllProducts();
-      const item = list.find(p => p.id === id);
-      if (!item) return;
-
-      const newPrice = prompt(`Introduce el nuevo precio para "${item.title}":`, item.price);
-      if (newPrice !== null && newPrice.trim() !== '') {
-        const cleanPrice = newPrice.trim().includes('€') ? newPrice.trim() : newPrice.trim() + ' €';
-        item.price = cleanPrice;
-        saveAllProducts(list);
-        playNotificationChime();
-        showAdminToast(`Precio actualizado para "${item.title}": ${cleanPrice}`);
-      }
-    }
-
     function deleteProduct(id) {
       const list = getAllProducts();
       const item = list.find(p => p.id === id);
       if (!item) return;
 
-      if (!confirm(`¿Seguro que deseas eliminar "${item.title}" del inventario?`)) return;
+      if (!confirm(`¿Seguro que deseas eliminar "${item.title}" del inventario de la web?`)) return;
       const updated = list.filter(p => p.id !== id);
       saveAllProducts(updated);
-      showAdminToast(`Producto eliminado del inventario.`);
+      showAdminToast(`🗑️ "${item.title}" eliminado del inventario y de la web.`);
     }
 
     function updateKPICounters() {
@@ -2690,7 +3664,7 @@ www.oreromotorcycles.es`;
     }
 
     // ══════════════════════════════════════════════════════════
-    // MODAL DE PUBLICACIÓN
+    // MODAL DE PUBLICACIÓN (CON COMPRESIÓN Y SUBIDA A NUBE)
     // ══════════════════════════════════════════════════════════
     let _uploadedPhoto = '';
 
@@ -2714,6 +3688,8 @@ www.oreromotorcycles.es`;
       const isMoto = (cat === 'ocasion' || cat === 'nueva');
       document.getElementById('groupMotoYear').style.display = isMoto ? 'block' : 'none';
       document.getElementById('groupMotoKm').style.display = isMoto ? 'block' : 'none';
+      const extra = document.getElementById('groupMotoExtraSpecs');
+      if (extra) extra.style.display = isMoto ? 'grid' : 'none';
     }
 
     function handleModalPhotoUpload(e) {
@@ -2721,8 +3697,8 @@ www.oreromotorcycles.es`;
       if (!file) return;
 
       const reader = new FileReader();
-      reader.onload = function(evt) {
-        _uploadedPhoto = evt.target.result;
+      reader.onload = async function(evt) {
+        _uploadedPhoto = await compressImageDataUrl(evt.target.result, 1280, 0.84);
         document.getElementById('modalPhotoPreview').src = _uploadedPhoto;
         document.getElementById('modalPhotoPreviewWrap').style.display = 'block';
       };
@@ -2742,7 +3718,7 @@ www.oreromotorcycles.es`;
       document.getElementById('photoFileInput').value = '';
     }
 
-    function handleFormPublish(e) {
+    async function handleFormPublish(e) {
       e.preventDefault();
       const cat = document.getElementById('prodCat').value;
       const title = document.getElementById('prodTitle').value.trim();
@@ -2757,33 +3733,63 @@ www.oreromotorcycles.es`;
         else if (cat === 'chaqueta') image = 'assets/boutique_chaqueta_alpinestars.jpg';
         else if (cat === 'accesorio') image = 'assets/boutique_antirrobo_disco.jpg';
         else image = 'assets/clean_showroom_orero.jpg';
+      } else if (image.startsWith('../')) {
+        image = image.replace(/^\.\.\//, '');
       }
 
       const cleanPrice = price.includes('€') ? price : price + ' €';
+      const isMoto = (cat === 'ocasion' || cat === 'nueva');
+
+      const inferred = inferMotoDetails(title, cat, {
+        type: isMoto && document.getElementById('prodMotoType') ? document.getElementById('prodMotoType').value : 'boutique',
+        a2: isMoto && document.getElementById('prodA2') ? (document.getElementById('prodA2').value === 'true') : false,
+        cc: isMoto && document.getElementById('prodCc') ? document.getElementById('prodCc').value.trim() : '',
+        power: isMoto && document.getElementById('prodPower') ? document.getElementById('prodPower').value.trim() : '',
+        itv: isMoto && document.getElementById('prodItv') ? document.getElementById('prodItv').value.trim() : '',
+        financeFrom: isMoto && document.getElementById('prodFinance') ? document.getElementById('prodFinance').value.trim() : null,
+        price: cleanPrice
+      });
 
       const newProduct = {
         id: 'prod_' + Date.now(),
+        brand: inferred.brand,
+        model: inferred.model,
         title,
         category: cat,
+        type: inferred.type,
+        a2: inferred.a2,
+        license: inferred.license,
+        cc: inferred.cc,
+        power: inferred.power,
+        itv: inferred.itv,
         price: cleanPrice,
-        year: year ? parseInt(year) : 2024,
-        km: km || '0 km',
+        priceCash: inferred.priceCash,
+        financeFrom: inferred.financeFrom,
+        year: year ? parseInt(year, 10) : 2024,
+        km: km || (cat === 'nueva' ? '0 km (Nueva)' : 'En Tienda'),
         image,
         status: 'disponible',
-        desc: desc || 'Vehículo disponible en nuestra exposición de Calle San Agustín 18, Orihuela.'
+        badge: cat === 'ocasion' ? 'Ocasión' : (cat === 'nueva' ? 'Nueva a estrenar' : 'Boutique Oficial'),
+        desc: desc || 'Vehículo revisado y disponible en nuestra exposición de Calle San Agustín 18, Orihuela.',
+        features: [
+          `Cilindrada: ${inferred.cc} · Potencia: ${inferred.power}`,
+          `Compatible con ${inferred.license}`,
+          'Revisión completa de 60 puntos de seguridad en nuestro taller oficial',
+          'Gestión documental e intermediación transparente en Calle San Agustín 18'
+        ]
       };
 
       const list = getAllProducts();
       list.unshift(newProduct);
+      closePublishModal();
       saveAllProducts(list);
 
-      closePublishModal();
       playNotificationChime();
-      showAdminToast(`🎉 ¡"${title}" publicado con éxito! Visible en la web.`);
+      showAdminToast(`🚀 ¡"${title}" publicada! Sincronizando con oreromotorcycles.es...`);
     }
 
     // ══════════════════════════════════════════════════════════
-    // GESTIÓN DE CITAS DE TALLER
+    // GESTIÓN DE CITAS DE TALLER & RELAY EN TIEMPO REAL
     // ══════════════════════════════════════════════════════════
     function getStoredCitas() {
       try {
@@ -2797,10 +3803,11 @@ www.oreromotorcycles.es`;
       return DEFAULT_CITAS;
     }
 
-    function saveStoredCitas(citas) {
+    function saveStoredCitas(citas, skipCloud = false) {
       localStorage.setItem('orero_appointments', JSON.stringify(citas));
       renderCitas();
       updateKPICounters();
+      if (!skipCloud) syncAllToCloud(true);
     }
 
     function renderCitas() {
@@ -2818,9 +3825,6 @@ www.oreromotorcycles.es`;
           ? '<span style="background:rgba(245,158,11,0.2); color:#fbbf24; padding:4px 9px; border-radius:6px; font-weight:800; font-size:0.75rem;">PENDIENTE</span>'
           : '<span style="background:rgba(16,185,129,0.2); color:#34d399; padding:4px 9px; border-radius:6px; font-weight:800; font-size:0.75rem;">CONFIRMADA</span>';
 
-        const cleanPhone = (c.phone || '').replace(/\D/g, '');
-        const phoneParam = cleanPhone.startsWith('34') ? cleanPhone : '34' + cleanPhone;
-        
         tr.innerHTML = `
           <td style="font-family:monospace; font-weight:800; color:var(--red); font-size:0.86rem;">${c.ref}</td>
           <td><strong style="color:#fff; font-size:0.92rem;">${c.name}</strong></td>
@@ -2929,10 +3933,11 @@ www.oreromotorcycles.es`;
       return DEFAULT_TASACIONES;
     }
 
-    function saveStoredTasaciones(tas) {
+    function saveStoredTasaciones(tas, skipCloud = false) {
       localStorage.setItem('orero_tasaciones', JSON.stringify(tas));
       renderTasaciones();
       updateKPICounters();
+      if (!skipCloud) syncAllToCloud(true);
     }
 
     function renderTasaciones() {
@@ -2944,10 +3949,6 @@ www.oreromotorcycles.es`;
 
       tas.forEach(t => {
         const tr = document.createElement('tr');
-        const cleanPhone = (t.phone || '').replace(/\D/g, '');
-        const phoneParam = cleanPhone.startsWith('34') ? cleanPhone : '34' + cleanPhone;
-        const msg = encodeURIComponent(`Hola ${t.name}, te escribimos desde Orero Motorcycles en Orihuela. Hemos revisado los datos de tu ${t.moto} (${t.year}, ${t.km}) y nuestra valoración preliminar es de *${t.offer}*. Si te interesa, puedes traerla a Calle San Agustín 18 para revisarla y cerrar el trato. ¿Cuándo te viene bien pasar?`);
-
         tr.innerHTML = `
           <td style="font-family:monospace; font-weight:800; color:var(--red);">${t.ref}</td>
           <td>
@@ -3029,6 +4030,101 @@ www.oreromotorcycles.es`;
     }
 
     // ══════════════════════════════════════════════════════════
+    // LIVE RELAY FOR PUBLIC BOOKINGS (NTFY SSE + POLL)
+    // ══════════════════════════════════════════════════════════
+    let _ntfyInitialized = false;
+
+    function ingestIncomingAppointment(appt, isLiveAlert = true) {
+      if (!appt || !appt.ref) return false;
+      const citas = getStoredCitas();
+      if (citas.some(c => c.ref === appt.ref)) return false;
+
+      citas.unshift(appt);
+      localStorage.setItem('orero_appointments', JSON.stringify(citas));
+      renderCitas();
+
+      if (appt.service && appt.service.toLowerCase().includes('tasaci')) {
+        const tas = getStoredTasaciones();
+        const tasRef = appt.ref.replace('CITA', 'TAS');
+        if (!tas.some(t => t.ref === tasRef)) {
+          tas.unshift({
+            ref: tasRef,
+            name: appt.name,
+            phone: appt.phone,
+            moto: appt.moto,
+            year: 'Consultar',
+            km: 'Consultar',
+            offer: 'Pendiente tasar',
+            status: 'pendiente',
+            notes: appt.notes || 'Solicitada desde formulario web.'
+          });
+          localStorage.setItem('orero_tasaciones', JSON.stringify(tas));
+          renderTasaciones();
+        }
+      }
+
+      updateKPICounters();
+      syncAllToCloud(true);
+
+      if (isLiveAlert) {
+        playNotificationChime();
+        const bar = document.getElementById('liveAlertBar');
+        document.getElementById('alertBarTitle').textContent = `🔔 ¡NUEVA CITA DE TALLER: ${(appt.name || '').toUpperCase()}!`;
+        document.getElementById('alertBarDesc').textContent = `Vehículo: ${appt.moto} · ${appt.service} · Calle San Agustín 18`;
+        if (document.getElementById('alertBarCallLink')) document.getElementById('alertBarCallLink').href = 'tel:' + (appt.phone || '966740120');
+        bar.style.display = 'flex';
+        showAdminToast(`🔔 Nueva cita web recibida de ${appt.name} (${appt.moto})`);
+      }
+      return true;
+    }
+
+    async function initLiveBookingRelay() {
+      if (_ntfyInitialized) return;
+      _ntfyInitialized = true;
+
+      // 1. Poll recent 24h messages missed while admin tab was closed
+      try {
+        const res = await fetch(`https://ntfy.sh/${NTFY_TOPIC}/json?poll=1&since=24h`);
+        if (res.ok) {
+          const text = await res.text();
+          const lines = text.trim().split('\n').filter(Boolean);
+          let addedCount = 0;
+          lines.forEach(line => {
+            try {
+              const env = JSON.parse(line);
+              if (env && env.message) {
+                const payload = JSON.parse(env.message);
+                if (payload && payload.appointment) {
+                  if (ingestIncomingAppointment(payload.appointment, false)) addedCount++;
+                }
+              }
+            } catch (e) {}
+          });
+          if (addedCount > 0) {
+            playNotificationChime();
+            showAdminToast(`🔔 ${addedCount} nueva(s) cita(s) sincronizadas desde la web.`);
+          }
+        }
+      } catch (e) {}
+
+      // 2. Subscribe to real-time SSE stream
+      try {
+        const es = new EventSource(`https://ntfy.sh/${NTFY_TOPIC}/sse`);
+        es.onmessage = (evt) => {
+          try {
+            const env = JSON.parse(evt.data);
+            if (env && env.message) {
+              const payload = JSON.parse(env.message);
+              if (payload && payload.appointment) {
+                ingestIncomingAppointment(payload.appointment, true);
+              }
+            }
+          } catch (e) {}
+        };
+      } catch (e) {}
+    }
+
+    // ══════════════════════════════════════════════════════════
     // SIMULACIÓN DE CITA EN VIVO (CON SONIDO Y BANNER)
     // ══════════════════════════════════════════════════════════
     function simulateNewAppointment() {
@@ -3038,8 +4134,7 @@ www.oreromotorcycles.es`;
       const randomMoto = sampleMotos[Math.floor(Math.random() * sampleMotos.length)];
       const newRef = "ORERO-CITA-" + Math.floor(1000 + Math.random() * 9000);
 
-      const citas = getStoredCitas();
-      citas.unshift({
+      ingestIncomingAppointment({
         ref: newRef,
         name: randomName,
         phone: "654321987",
@@ -3048,20 +4143,7 @@ www.oreromotorcycles.es`;
         date: new Date().toISOString().split('T')[0],
         slot: "Mañana (09:30 - 13:30)",
         status: "pendiente"
-      });
-      saveStoredCitas(citas);
-
-      // Play Sound
-      playNotificationChime();
-
-      // Show Banner
-      const bar = document.getElementById('liveAlertBar');
-      document.getElementById('alertBarTitle').textContent = `🔔 ¡NUEVA CITA DE TALLER: ${randomName.toUpperCase()}!`;
-      document.getElementById('alertBarDesc').textContent = `Vehículo: ${randomMoto} · Revisión Oficial 60 Puntos · Calle San Agustín 18`;
-            if (document.getElementById('alertBarCallLink')) document.getElementById('alertBarCallLink').href = 'tel:654321987';
-      bar.style.display = 'flex';
-
-      showAdminToast(`🔔 Nueva cita recibida de ${randomName} (${randomMoto})`);
+      }, true);
     }
 
     function dismissAlertBar() {
@@ -3069,7 +4151,7 @@ www.oreromotorcycles.es`;
     }
 
     // ══════════════════════════════════════════════════════════
-    // TABS SWITCHING
+    // TABS SWITCHING & TOAST
     // ══════════════════════════════════════════════════════════
     function switchTab(tab, btn) {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -3087,9 +4169,6 @@ www.oreromotorcycles.es`;
       if (tab === 'tasaciones') renderTasaciones();
     }
 
-    // ══════════════════════════════════════════════════════════
-    // TOAST SYSTEM
-    // ══════════════════════════════════════════════════════════
     let _toastTimer = null;
     function showAdminToast(msg, icon) {
       const toast = document.getElementById('adminToast');
@@ -3099,10 +4178,9 @@ www.oreromotorcycles.es`;
       clearTimeout(_toastTimer);
       _toastTimer = setTimeout(() => {
         toast.style.display = 'none';
-      }, 4000);
+      }, 4500);
     }
 
-    // Backup & Reset
     function backupAllDataJSON() {
       const data = {
         exportedAt: new Date().toISOString(),
@@ -3126,17 +4204,13 @@ www.oreromotorcycles.es`;
       renderAllStock();
       renderCitas();
       renderTasaciones();
+      syncAllToCloud(false);
       playNotificationChime();
-      showAdminToast('Catálogo inicial restaurado con éxito.');
     }
 
-    // ══════════════════════════════════════════════════════════
-    // INITIALIZATION
-    // ══════════════════════════════════════════════════════════
     initSoundState();
     checkAuth();
 
-    // Auto-sync appointments if new ones submitted on public site
     window.addEventListener('storage', (e) => {
       if (e.key === 'orero_appointments') {
         renderCitas();
@@ -3147,6 +4221,9 @@ www.oreromotorcycles.es`;
         renderTasaciones();
         playNotificationChime();
         showAdminToast('🤝 Nueva tasación sincronizada.');
+      }
+      if (e.key === 'orero_all_inventory') {
+        renderAllStock();
       }
     });
   </script>

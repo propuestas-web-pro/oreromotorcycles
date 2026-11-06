@@ -11,7 +11,6 @@
 
   <meta charset="utf-8">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="alternate icon" href="favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Orero Motorcycles | Concesionario Multimarca & Taller Oficial en Orihuela · Desde Dic. 2015</title>
   <meta name="description" content="Concesionario multimarca y taller oficial en Orihuela desde diciembre de 2015 (Calle San Agustín 18). Motos de ocasión revisadas, taller mecánico, gestión de venta e intermediación, y boutique técnica.">
@@ -990,6 +989,33 @@
       border-color: var(--border-red);
       color: #ff4d6d;
     }
+    .moto-badge-tag.tag-sold {
+      background: rgba(239, 35, 60, 0.92) !important;
+      border-color: #ff4d6d !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 14px rgba(239, 35, 60, 0.45);
+    }
+    .moto-card-pricing {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 18px;
+    }
+    .price-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .price-cash {
+      font-family: var(--font-heading);
+      font-size: 1.55rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+    }
 
     .moto-card-body {
       padding: 24px;
@@ -1680,35 +1706,7 @@
       color: var(--text-subtle);
     }
 
-    /* ══════════════════════════════════════════════════════════
-       FLOATING WHATSAPP BUTTON
-       ══════════════════════════════════════════════════════════ */
-    .floating-wa-btn {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      width: 56px;
-      height: 56px;
-      background: #25D366;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      text-decoration: none;
-      box-shadow: 0 6px 24px rgba(37, 211, 102, 0.45);
-      z-index: 99;
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
-    }
-    .floating-wa-btn:hover {
-      transform: scale(1.08);
-      box-shadow: 0 8px 30px rgba(37, 211, 102, 0.65);
-    }
-    .floating-wa-btn svg {
-      width: 30px;
-      height: 30px;
-      fill: #fff;
-    }
+    
 
     /* ══════════════════════════════════════════════════════════
        MODALS: MOTORCYCLE DETAIL & LEGAL
@@ -1812,47 +1810,7 @@
       pointer-events: none;
     }
 
-    /* 2. Floating WhatsApp Radar Ping */
-    @keyframes waRadarRing {
-      0% { transform: scale(0.9); opacity: 0.8; }
-      50% { opacity: 0.4; }
-      100% { transform: scale(1.85); opacity: 0; }
-    }
-    @keyframes waWiggle {
-      0%, 85%, 100% { transform: rotate(0deg); }
-      88% { transform: rotate(-10deg) scale(1.08); }
-      92% { transform: rotate(10deg) scale(1.08); }
-      96% { transform: rotate(-6deg) scale(1.05); }
-    }
-    .floating-wa-btn {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: #25D366;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 8px 26px rgba(37, 211, 102, 0.45);
-      z-index: 999;
-      animation: waWiggle 6s ease-in-out infinite;
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
-    }
-    .floating-wa-btn::before {
-      content: '';
-      position: absolute;
-      inset: -6px;
-      border-radius: 50%;
-      border: 2px solid #25D366;
-      animation: waRadarRing 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-      pointer-events: none;
-    }
-    .floating-wa-btn:hover {
-      transform: scale(1.12) translateY(-3px) !important;
-      box-shadow: 0 14px 36px rgba(37, 211, 102, 0.65);
-    }
+    
 
     /* 3. Badge Radar Beacon (Ocasión / Nueva) */
     @keyframes badgeBeacon {
@@ -3018,7 +2976,7 @@
     <div class="mobile-drawer" id="mobileDrawer">
       <a href="#inicio" onclick="closeMobileDrawer()">Inicio</a>
       <a href="#quienes-somos" onclick="closeMobileDrawer()">Quiénes Somos (Desde 2015)</a>
-      <a href="#catalogo" onclick="closeMobileDrawer()">Motos en Stock (18)</a>
+      <a href="#catalogo" onclick="closeMobileDrawer()">Motos en Stock (<span class="dyn-motos-count">18</span>)</a>
       <a href="#experiencia" onclick="closeMobileDrawer()">Compromiso & Taller</a>
       <a href="#servicios" onclick="closeMobileDrawer()">Servicios & Taller</a>
       <a href="#reservar-cita" onclick="closeMobileDrawer()" style="color:var(--red);">📅 Pedir Cita Previa</a>
@@ -3056,7 +3014,7 @@
         <p class="hero-subtitle">En el corazón de Orihuela desde diciembre de 2015. Motos de ocasión seleccionadas con revisión de 60 puntos, stock nuevo a estrenar, boutique técnica y taller mecánico multimarca en Calle San Agustín 18.</p>
         <div class="hero-ctas-row">
           <a href="#catalogo" class="btn-hero btn-hero-red">
-            <span>Ver Motos en Stock (18)</span>
+            <span>Ver Motos en Stock (<span class="dyn-motos-count">18</span>)</span>
           </a>
           <a href="#reservar-cita" class="btn-hero btn-hero-outline">
             <span>Pedir Cita de Taller</span>
@@ -3518,7 +3476,7 @@
               <span class="spec-item">⚡ <strong>73.4 CV</strong></span>
               <span class="spec-item">⚙️ <strong>689 cc</strong></span>
             
-              <span class="spec-item spec-itv" title="Vigencia de ITV">🛡️ ITV: <strong>Nov. 2026</strong></span>
+              <span class="spec-item spec-itv" title="Vigencia de ITV">🛡️ ITV: <strong>Nov. 2027</strong></span>
             </div>
 
             <div class="moto-price-row">
@@ -3552,7 +3510,7 @@
               <span class="spec-item">⚡ <strong>48 CV</strong></span>
               <span class="spec-item">⚙️ <strong>471 cc</strong></span>
             
-              <span class="spec-item spec-itv" title="Vigencia de ITV">🛡️ ITV: <strong>Mar. 2026</strong></span>
+              <span class="spec-item spec-itv" title="Vigencia de ITV">🛡️ ITV: <strong>Mar. 2027</strong></span>
             </div>
 
             <div class="moto-price-row">
@@ -3620,7 +3578,7 @@
               <span class="spec-item">⚡ <strong>70 CV</strong></span>
               <span class="spec-item">⚙️ <strong>645 cc</strong></span>
             
-              <span class="spec-item spec-itv" title="Vigencia de ITV">🛡️ ITV: <strong>Oct. 2026</strong></span>
+              <span class="spec-item spec-itv" title="Vigencia de ITV">🛡️ ITV: <strong>Oct. 2027</strong></span>
             </div>
 
             <div class="moto-price-row">
@@ -3654,7 +3612,7 @@
               <span class="spec-item">⚡ <strong>36 CV</strong></span>
               <span class="spec-item">⚙️ <strong>400 cc</strong></span>
             
-              <span class="spec-item spec-itv" title="Vigencia de ITV">🛡️ ITV: <strong>Sep. 2026</strong></span>
+              <span class="spec-item spec-itv" title="Vigencia de ITV">🛡️ ITV: <strong>Sep. 2027</strong></span>
             </div>
 
             <div class="moto-price-row">
@@ -3718,7 +3676,7 @@
               <span class="spec-item">⚡ <strong>29.2 CV</strong></span>
               <span class="spec-item">⚙️ <strong>330 cc</strong></span>
             
-              <span class="spec-item spec-itv" title="Vigencia de ITV">🛡️ ITV: <strong>Jun. 2026</strong></span>
+              <span class="spec-item spec-itv" title="Vigencia de ITV">🛡️ ITV: <strong>Jun. 2027</strong></span>
             </div>
 
             <div class="moto-price-row">
@@ -3846,7 +3804,7 @@
               <span class="spec-item">⚡ <strong>14.4 CV</strong></span>
               <span class="spec-item">⚙️ <strong>125 cc</strong></span>
             
-              <span class="spec-item spec-itv" title="Vigencia de ITV">🛡️ ITV: <strong>Jul. 2026</strong></span>
+              <span class="spec-item spec-itv" title="Vigencia de ITV">🛡️ ITV: <strong>Jul. 2027</strong></span>
             </div>
 
             <div class="moto-price-row">
@@ -3878,7 +3836,7 @@
               <span class="spec-item">⚡ <strong>23 CV</strong></span>
               <span class="spec-item">⚙️ <strong>250 cc</strong></span>
             
-              <span class="spec-item spec-itv" title="Vigencia de ITV">🛡️ ITV: <strong>Ago. 2026</strong></span>
+              <span class="spec-item spec-itv" title="Vigencia de ITV">🛡️ ITV: <strong>Ago. 2027</strong></span>
             </div>
 
             <div class="moto-price-row">
@@ -4006,7 +3964,7 @@
               <span class="spec-item">⚡ <strong>4.3 CV</strong></span>
               <span class="spec-item">⚙️ <strong>50 cc</strong></span>
             
-              <span class="spec-item spec-itv" title="Vigencia de ITV">🛡️ ITV: <strong>May. 2026</strong></span>
+              <span class="spec-item spec-itv" title="Vigencia de ITV">🛡️ ITV: <strong>May. 2027</strong></span>
             </div>
 
             <div class="moto-price-row">
@@ -4337,7 +4295,7 @@
           <span class="service-badge">Stock Multimarca Inmediato</span>
           <h3 class="service-title">Venta de Motos Nuevas & Ocasión</h3>
           <ul class="service-bullets">
-            <li><span class="check">✓</span> <span class="bullet-text">18 Motos en exposición revisadas y listas</span></li>
+            <li><span class="check">✓</span> <span class="bullet-text"><span class="dyn-motos-count">18</span> Motos en exposición revisadas y listas</span></li>
             <li><span class="check">✓</span> <span class="bullet-text">Marcas: Yamaha, Honda, Kawasaki, Suzuki, QJ Motor</span></li>
             <li><span class="check">✓</span> <span class="bullet-text">Revisión completa de 60 puntos y diagnosis técnica oficial</span></li>
           </ul>
@@ -4650,18 +4608,16 @@
           </p>
 
           <div class="booking-success-actions" style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
-            <button class="btn-hero" onclick="sendBookingWhatsAppDirect()" type="button" style="background:#25d366; color:#0b0e14; font-weight:800; font-size:0.9rem; padding:12px 22px; border:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 0 20px rgba(37,211,102,0.35); cursor:pointer;">
-              <span>💬 Confirmar por WhatsApp con Taller (1 Clic)</span>
-            </button>
+            <a href="tel:+34966740120" class="btn-hero" style="background:linear-gradient(135deg, var(--red) 0%, var(--red-hover) 100%); color:#fff; font-weight:800; font-size:0.9rem; padding:12px 22px; border:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 0 20px var(--red-glow); text-decoration:none; cursor:pointer;">
+              <span>📞 Llamar al Taller para Confirmar (966 74 01 20)</span>
+            </a>
             <button class="btn-hero btn-hero-outline" onclick="printAppointmentPass()" type="button" style="font-size:0.9rem; padding:12px 20px;">
               <span>🖨️ Descargar Justificante (Pase Taller)</span>
             </button>
             <button class="btn-hero btn-hero-outline" onclick="downloadAppointmentICS()" type="button" style="font-size:0.9rem; padding:12px 20px;">
               <span>📅 Añadir a Calendario (.ics)</span>
             </button>
-            <a href="tel:+34966740120" class="btn-hero btn-hero-outline" style="font-size:0.9rem; padding:12px 20px;">
-              <span>📞 Llamar al Taller (966 74 01 20)</span>
-            </a>
+
             <button class="btn-hero btn-hero-outline" onclick="resetBookingForm()" type="button" style="font-size:0.85rem; padding:12px 18px;">
               <span>Solicitar Otra Cita</span>
             </button>
@@ -4961,7 +4917,7 @@
        ══════════════════════════════════════════════════════════ -->
   <script>
     // Authentic Real Motorcycles Database
-    const MOTOS_DATA = {"moto-yamaha-mt07": {"id": "moto-yamaha-mt07", "brand": "Yamaha", "model": "MT-07", "type": "naked", "condition": "ocasion", "status": "destacada", "badge": "Ocasión", "priceCash": 6900, "financeFrom": 119, "year": 2021, "km": 12500, "cc": "689 cc", "power": "73.4 CV", "fuel": "Gasolina", "license": "Permiso A2 / A", "image": "assets/moto_yamaha_mt07.jpg", "description": "Hyper-naked líder en su categoría. Motor bicilíndrico CP2 de par motor emocionante, pantalla LCD digital y neumáticos en perfecto estado. Revisión integral en taller oficial.", "features": ["Motor bicilíndrico Crossplane CP2 de 689 cc", "12.500 km certificados con libro de mantenimiento", "Limitada / limitable para carnet A2", "Frenos de doble disco delantero de 298 mm con ABS", "Revisión técnica certificada de 60 puntos"], "images": ["assets/moto_yamaha_mt07.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Noviembre 2026"}, "moto-honda-cbr500r": {"id": "moto-honda-cbr500r", "brand": "Honda", "model": "CBR 500R", "type": "sport", "condition": "ocasion", "status": "destacada", "badge": "Ocasión", "priceCash": 5800, "financeFrom": 99, "year": 2022, "km": 8300, "cc": "471 cc", "power": "48 CV", "fuel": "Gasolina", "license": "Permiso A2", "image": "assets/moto_honda_cbr500r.jpg", "description": "Deportiva polivalente con ADN racing HRC. Horquilla invertida Showa SFF-BP de 41 mm, doble disco delantero y embrague antirrebote asistido.", "features": ["Potencia exacta de 35 kW (48 CV) para carnet A2 directo", "Horquilla invertida Showa SFF-BP de 41 mm", "Solo 8.300 km reales certificados en cuadro", "Embrague antirrebote asistido y cuadro LCD invertido", "Gestión documental DGT y cambio de titular incluido"], "images": ["assets/moto_honda_cbr500r.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Marzo 2026"}, "moto-kawasaki-ninja650": {"id": "moto-kawasaki-ninja650", "brand": "Kawasaki", "model": "Ninja 650", "type": "sport", "condition": "nueva", "status": "destacada", "badge": "Nueva", "priceCash": 7900, "financeFrom": 139, "year": 2024, "km": 0, "cc": "649 cc", "power": "68 CV", "fuel": "Gasolina", "license": "Permiso A2 / A", "image": "assets/moto_kawasaki_ninja650.jpg", "description": "Vehículo nuevo a estrenar 0 km. Pantalla TFT a color con conectividad smartphone Rideology App, embrague asistido y óptica delantera full LED KRT.", "features": ["0 km nueva a estrenar", "Pantalla TFT color con Bluetooth Rideology", "Kit de limitación A2 disponible sin coste extra", "Garantía oficial Kawasaki de hasta 4 años", "Matriculación y puesta en calle inmediata"], "images": ["assets/moto_kawasaki_ninja650.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Exenta hasta 2028 (Nueva)"}, "moto-suzuki-vstrom650": {"id": "moto-suzuki-vstrom650", "brand": "Suzuki", "model": "V-Strom 650", "type": "trail", "condition": "ocasion", "status": "destacada", "badge": "Ocasión", "priceCash": 5500, "financeFrom": 95, "year": 2020, "km": 18200, "cc": "645 cc", "power": "70 CV", "fuel": "Gasolina", "license": "Permiso A2 / A", "image": "assets/moto_suzuki_vstrom650.jpg", "description": "La reina de los viajes y la polivalencia. Edición XT con llantas doradas de radios tubeless, control de tracción desconectable de 2 modos y pantalla regulable.", "features": ["Llantas de radios doradas DID Tubeless", "Motor bicilíndrico en V a 90° de máxima fiabilidad", "Control de tracción STCS regulable en 2 modos y desconectable", "Defensas de motor y cubrepuños originales", "Revisión completa de 60 puntos y puesta a punto"], "images": ["assets/moto_suzuki_vstrom650.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Octubre 2026"}, "moto-peugeot-metropolis": {"id": "moto-peugeot-metropolis", "brand": "Peugeot", "model": "Metropolis 400 Active (3 ruedas)", "type": "scooter", "condition": "ocasion", "status": "disponible", "badge": "379 km certificados", "priceCash": 6500, "financeFrom": null, "year": 2021, "km": 379, "cc": "400 cc", "power": "36 CV", "fuel": "Gasolina", "license": "Permiso B (+21 años)", "image": "assets/real_peugeot_metropolis_master.jpg", "description": "Triciclo de 3 ruedas con solo 379 km certificados. Conducible con permiso B de coche (según normativa DGT para vehículos L5e). Máxima estabilidad y seguridad en autovía y ciudad.", "features": ["Conducible con permiso B de coche (L5e)", "Solo 379 km certificados en cuadro digital", "Frenada combinada SBC con sistema antibloqueo ABS", "Sistema de bloqueo de inclinación en parado", "Cofre con capacidad para 2 cascos"], "images": ["assets/real_peugeot_metropolis_master.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Septiembre 2026"}, "moto-qj-srk": {"id": "moto-qj-srk", "brand": "QJ Motor", "model": "SRK 125J", "type": "naked", "condition": "nueva", "status": "disponible", "badge": "Nueva a estrenar", "priceCash": 2999, "financeFrom": null, "year": 2026, "km": 0, "cc": "125 cc", "power": "15 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/real_qj_srk_master.jpg", "description": "Naked deportiva de 125 cc a estrenar. Motor monocilíndrico de refrigeración líquida de 15 CV (límite legal para permiso A1/B), iluminación full LED y cuadro LCD digital.", "features": ["Potencia máxima legal: 15 CV", "Refrigeración líquida e inyección electrónica", "Horquilla invertida delantera y frenos de disco ABS", "Garantía legal de 3 años para vehículos nuevos", "Garantía comercial de hasta 6 años"], "images": ["assets/real_qj_srk_master.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Exenta hasta 2028 (Nueva)"}, "moto-honda-sh350": {"id": "moto-honda-sh350", "brand": "Honda", "model": "SH 350i Sport ABS", "type": "scooter", "condition": "ocasion", "status": "disponible", "badge": "Edición Sport", "priceCash": 5200, "financeFrom": null, "year": 2022, "km": 11420, "cc": "330 cc", "power": "29.2 CV", "fuel": "Gasolina", "license": "Permiso A2", "image": "assets/moto_honda_sh350.jpg", "description": "El scooter de rueda alta por excelencia en su versión deportiva de 350 cc. Motor eSP+ de baja fricción, control de tracción HSTC desconectable y llave inteligente Smart Key.", "features": ["Motor Honda eSP+ 29.2 CV con gran aceleración", "Control de par seleccionable Honda (HSTC)", "Ruedas altas de 16 pulgadas para máxima estabilidad", "Llave inteligente Smart Key y toma USB-C bajo el asiento", "Revisión técnica en taller propio oficial"], "images": ["assets/moto_honda_sh350.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Junio 2026"}, "moto-kymco-agility": {"id": "moto-kymco-agility", "brand": "KYMCO", "model": "Agility City PLUS 125 Euro 5+", "type": "scooter", "condition": "nueva", "status": "oferta", "badge": "Oferta especial", "priceCash": 2199, "oldPrice": 2399, "financeFrom": null, "year": 2026, "km": 0, "cc": "125 cc", "power": "9 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/moto_kymco_agility.jpg", "description": "Scooter urbano de rueda alta líder en fiabilidad. Nueva homologación Euro 5+, suelo plano, baúl trasero de serie y consumo medio inferior a 2.5 l/100 km.", "features": ["Vehículo nuevo 0 km a estrenar", "Rueda delantera de 16 pulgadas y frenada combinada CBS", "Suelo plano funcional y gancho portabolsas", "Baúl trasero incluido de serie", "3 años de garantía legal"], "images": ["assets/moto_kymco_agility.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Exenta hasta 2028 (Nueva)"}, "moto-sym-symphony": {"id": "moto-sym-symphony", "brand": "SYM", "model": "Symphony 125 SR (Baúl incluido)", "type": "scooter", "condition": "nueva", "status": "disponible", "badge": "Baúl de serie", "priceCash": 2499, "financeFrom": null, "year": 2026, "km": 0, "cc": "125 cc", "power": "11.4 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/moto_sym_symphony.jpg", "description": "Scooter moderno de suelo plano y rueda alta. Incluye baúl trasero SHAD a juego. Motor de inyección de bajo consumo con excelente aceleración urbana.", "features": ["3 años de garantía legal para vehículos nuevos", "Garantía comercial SYM de hasta 5 años", "Frenada combinada de discos lobulados", "Baúl trasero incluido de fábrica", "Suelo plano y luz diurna LED"], "images": ["assets/moto_sym_symphony.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Exenta hasta 2028 (Nueva)"}, "moto-macbor-montana": {"id": "moto-macbor-montana", "brand": "Macbor", "model": "Montana XR1 125 EVO Trail", "type": "trail", "condition": "nueva", "status": "disponible", "badge": "Trail aventura", "priceCash": 3299, "financeFrom": null, "year": 2026, "km": 0, "cc": "125 cc", "power": "12.6 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/moto_macbor_montana.jpg", "description": "Auténtica trail de aventura para disfrutar dentro y fuera del asfalto. Equipamiento de serie con defensas laterales, cubre cárter y juego de 3 maletas incluido.", "features": ["Kit de maletas y baúl adventure incluido de serie", "Defensas perimetrales y cubre cárter", "Horquilla delantera invertida y monoamortiguador trasero", "Iluminación full LED con tomas auxiliares de carga", "3 años de garantía legal"], "images": ["assets/moto_macbor_montana.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Exenta hasta 2028 (Nueva)"}, "moto-kymco-kxct": {"id": "moto-kymco-kxct", "brand": "KYMCO", "model": "K-XCT 125i Sport ABS", "type": "scooter", "condition": "ocasion", "status": "disponible", "badge": "Revisión recién hecha", "priceCash": 2350, "financeFrom": null, "year": 2016, "km": 47598, "cc": "125 cc", "power": "14.4 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/real_kymco_kxct_master.jpg", "description": "Maxiscooter deportivo en muy buen estado mecánico. Historial de mantenimiento al día, cúpula deportiva y gran agilidad tanto en carretera como en ciudad.", "features": ["Motor 125 cc refrigerado por líquido con 14.4 CV", "Frenos antibloqueo ABS de doble canal", "Mantenimiento preventivo recién completado en taller", "Neumáticos y pastillas de freno en óptimo estado", "Revisión técnica en taller propio oficial"], "images": ["assets/real_kymco_kxct_master.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Julio 2026"}, "moto-suzuki-burgman": {"id": "moto-suzuki-burgman", "brand": "Suzuki", "model": "Burgman 250 Executive", "type": "scooter", "condition": "ocasion", "status": "disponible", "badge": "Revisión completa de motor", "priceCash": 1350, "financeFrom": null, "year": 2005, "km": 86258, "cc": "250 cc", "power": "23 CV", "fuel": "Gasolina", "license": "Permiso A2", "image": "assets/real_suzuki_burgman_master.jpg", "description": "Maxiscooter de amplio confort con cilindro y pistón nuevos montados en nuestro taller. Capacidad bajo el asiento para dos cascos integrales y excelente protección aerodinámica.", "features": ["Cilindro y pistón nuevos instalados por nuestros mecánicos", "Enorme maletero bajo asiento para 2 cascos integrales", "Pantalla parabrisas protectora de alta cobertura", "Asiento con respaldo ergonómico para conductor y pasajero", "Revisión técnica en taller propio oficial"], "images": ["assets/real_suzuki_burgman_master.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Agosto 2026"}, "moto-peugeot-citystar": {"id": "moto-peugeot-citystar", "brand": "Peugeot", "model": "Citystar 50 RS Sport", "type": "ciclomotor", "condition": "ocasion", "status": "disponible", "badge": "Edición deportiva", "priceCash": 1050, "financeFrom": null, "year": 2017, "km": 36238, "cc": "50 cc", "power": "4.8 CV", "fuel": "Gasolina", "license": "Permiso AM o B", "image": "assets/real_peugeot_citystar_master.jpg", "description": "Ciclomotor de chasis robusto con frenos de disco delantero y trasero. Muy ágil y práctico para desplazamientos urbanos económicos y fiables.", "features": ["Conducible con permiso AM (desde los 15 años) o B de coche", "Doble disco de freno delantero y trasero", "Gran guantera delantera y plataforma espaciosa", "Consumo mínimo inferior a 2 litros a los 100 km", "Revisión técnica en taller propio oficial"], "images": ["assets/real_peugeot_citystar_master.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "En vigor (Ciclomotor)"}, "moto-rieju-mrt": {"id": "moto-rieju-mrt", "brand": "Rieju", "model": "MRT 50 Pro Black Series Supermotard", "type": "ciclomotor", "condition": "nueva", "status": "disponible", "badge": "Motor 2T Minarelli", "priceCash": 3899, "financeFrom": null, "year": 2026, "km": 0, "cc": "50 cc", "power": "5 CV", "fuel": "Gasolina (2T)", "license": "Permiso AM o B", "image": "assets/real_rieju_mrt_master.jpg", "description": "Supermotard de 50 cc con especificaciones profesionales. Motor Minarelli AM6 refrigerado por líquido, suspensión delantera invertida y basculante de aluminio.", "features": ["Motor Minarelli AM6 de 2 tiempos con refrigeración líquida", "Horquilla invertida Pro y monoamortiguador con bieletas", "Basculante de aluminio y manillar de sección variable", "Discos wave lobulados de gran mordida", "3 años de garantía legal para vehículos nuevos"], "images": ["assets/real_rieju_mrt_master.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Exenta hasta 2027"}, "moto-hanway-furious": {"id": "moto-hanway-furious", "brand": "Hanway", "model": "Furious NK 125 Naked", "type": "naked", "condition": "ocasion", "status": "disponible", "badge": "2.500 km certificados", "priceCash": 1950, "financeFrom": null, "year": 2023, "km": 2500, "cc": "125 cc", "power": "14.9 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/moto_hanway_furious.jpg", "description": "Naked moderna y ligera de 125 cc con poquísimo uso. Motor DOHC de 4 válvulas y 15 CV, panel TFT a color y frenada combinada CBS.", "features": ["Motor multiválvulas DOHC 14.9 CV refrigerado por líquido", "Pantalla digital a color TFT con indicador de marcha", "Horquilla invertida delantera deportiva", "Iluminación full LED delantera y trasera", "Revisión técnica en taller propio oficial"], "images": ["assets/moto_hanway_furious.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Enero 2027"}, "moto-vespa-lx": {"id": "moto-vespa-lx", "brand": "Vespa", "model": "LX 50 2T Clásica", "type": "ciclomotor", "condition": "ocasion", "status": "disponible", "badge": "Ocasión económica", "priceCash": 950, "financeFrom": null, "year": 2008, "km": 28410, "cc": "50 cc", "power": "4.3 CV", "fuel": "Gasolina (2T)", "license": "Permiso AM o B", "image": "assets/vespa_lx_hd.jpg", "description": "Icono del diseño italiano con carrocería de chapa de acero autoportante. Mecánica 2T revisada y lista para circular con gran economía en trayectos urbanos.", "features": ["Carrocería clásica de chapa de acero", "Motor 2T de respuesta inmediata y bajo coste de mantenimiento", "Arranque eléctrico y por pedal de apoyo", "Neumáticos y frenos revisados por mecánicos", "Revisión técnica en taller propio oficial"], "images": ["assets/vespa_lx_hd.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Mayo 2026"}, "moto-benda-napoleon": {"id": "moto-benda-napoleon", "brand": "Benda", "model": "Napoleon Bob 250 Custom Bobber", "type": "custom", "condition": "nueva", "status": "disponible", "badge": "Diseño exclusivo", "priceCash": 4290, "financeFrom": null, "year": 2026, "km": 0, "cc": "250 cc", "power": "26 CV", "fuel": "Gasolina", "license": "Permiso A2", "image": "assets/moto_benda_napoleon.jpg", "description": "Custom de estética bobber vanguardista con basculante específico y motor bicilíndrico en V. Estilo único, sonido inconfundible y posición de conducción rebajada.", "features": ["Motor bicilíndrico en V de refrigeración líquida", "Suspensión delantera con sistema tipo Hossack / girder", "Frenos de disco con sistema antibloqueo ABS", "Asiento monoplaza flotante estilo bobber clásico", "3 años de garantía legal para vehículos nuevos"], "images": ["assets/moto_benda_napoleon.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Exenta hasta 2028 (Nueva)"}, "moto-yamaha-virago": {"id": "moto-yamaha-virago", "brand": "Yamaha", "model": "XV 535 SP Virago Custom", "type": "custom", "condition": "ocasion", "status": "vendida", "badge": "Clásica revisada", "priceCash": 2500, "financeFrom": null, "year": 1998, "km": 45978, "cc": "535 cc", "power": "46 CV", "fuel": "Gasolina", "license": "Permiso A2", "image": "assets/real_yamaha_virago_master.jpg", "description": "Auténtico clásico custom japonés en muy buen estado de conservación y mecánica revisada por completo en nuestro taller de Orihuela. Motor bicilíndrico en V refrigerado por aire con alforjas de cuero.", "features": ["Motor bicilíndrico en V clásico", "Transmisión por cardán sin mantenimiento", "Alforjas laterales de cuero incluidas", "Pintura y cromados cuidados", "Vehículo entregado a su nuevo propietario"], "images": ["assets/real_yamaha_virago_master.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Al día (Vehículo entregado)"}};
+    const MOTOS_DATA = {"moto-yamaha-mt07": {"id": "moto-yamaha-mt07", "brand": "Yamaha", "model": "MT-07", "type": "naked", "condition": "ocasion", "status": "destacada", "badge": "Ocasión", "priceCash": 6900, "financeFrom": 119, "year": 2021, "km": 12500, "cc": "689 cc", "power": "73.4 CV", "fuel": "Gasolina", "license": "Permiso A2 / A", "image": "assets/moto_yamaha_mt07.jpg", "description": "Hyper-naked líder en su categoría. Motor bicilíndrico CP2 de par motor emocionante, pantalla LCD digital y neumáticos en perfecto estado. Revisión integral en taller oficial.", "features": ["Motor bicilíndrico Crossplane CP2 de 689 cc", "12.500 km certificados con libro de mantenimiento", "Limitada / limitable para carnet A2", "Frenos de doble disco delantero de 298 mm con ABS", "Revisión técnica certificada de 60 puntos"], "images": ["assets/moto_yamaha_mt07.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Noviembre 2027"}, "moto-honda-cbr500r": {"id": "moto-honda-cbr500r", "brand": "Honda", "model": "CBR 500R", "type": "sport", "condition": "ocasion", "status": "destacada", "badge": "Ocasión", "priceCash": 5800, "financeFrom": 99, "year": 2022, "km": 8300, "cc": "471 cc", "power": "48 CV", "fuel": "Gasolina", "license": "Permiso A2", "image": "assets/moto_honda_cbr500r.jpg", "description": "Deportiva polivalente con ADN racing HRC. Horquilla invertida Showa SFF-BP de 41 mm, doble disco delantero y embrague antirrebote asistido.", "features": ["Potencia exacta de 35 kW (48 CV) para carnet A2 directo", "Horquilla invertida Showa SFF-BP de 41 mm", "Solo 8.300 km reales certificados en cuadro", "Embrague antirrebote asistido y cuadro LCD invertido", "Gestión documental DGT y cambio de titular incluido"], "images": ["assets/moto_honda_cbr500r.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Marzo 2027"}, "moto-kawasaki-ninja650": {"id": "moto-kawasaki-ninja650", "brand": "Kawasaki", "model": "Ninja 650", "type": "sport", "condition": "nueva", "status": "destacada", "badge": "Nueva", "priceCash": 7900, "financeFrom": 139, "year": 2024, "km": 0, "cc": "649 cc", "power": "68 CV", "fuel": "Gasolina", "license": "Permiso A2 / A", "image": "assets/moto_kawasaki_ninja650.jpg", "description": "Vehículo nuevo a estrenar 0 km. Pantalla TFT a color con conectividad smartphone Rideology App, embrague asistido y óptica delantera full LED KRT.", "features": ["0 km nueva a estrenar", "Pantalla TFT color con Bluetooth Rideology", "Kit de limitación A2 disponible sin coste extra", "Garantía oficial Kawasaki de hasta 4 años", "Matriculación y puesta en calle inmediata"], "images": ["assets/moto_kawasaki_ninja650.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Exenta hasta 2028 (Nueva)"}, "moto-suzuki-vstrom650": {"id": "moto-suzuki-vstrom650", "brand": "Suzuki", "model": "V-Strom 650", "type": "trail", "condition": "ocasion", "status": "destacada", "badge": "Ocasión", "priceCash": 5500, "financeFrom": 95, "year": 2020, "km": 18200, "cc": "645 cc", "power": "70 CV", "fuel": "Gasolina", "license": "Permiso A2 / A", "image": "assets/moto_suzuki_vstrom650.jpg", "description": "La reina de los viajes y la polivalencia. Edición XT con llantas doradas de radios tubeless, control de tracción desconectable de 2 modos y pantalla regulable.", "features": ["Llantas de radios doradas DID Tubeless", "Motor bicilíndrico en V a 90° de máxima fiabilidad", "Control de tracción STCS regulable en 2 modos y desconectable", "Defensas de motor y cubrepuños originales", "Revisión completa de 60 puntos y puesta a punto"], "images": ["assets/moto_suzuki_vstrom650.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Octubre 2027"}, "moto-peugeot-metropolis": {"id": "moto-peugeot-metropolis", "brand": "Peugeot", "model": "Metropolis 400 Active (3 ruedas)", "type": "scooter", "condition": "ocasion", "status": "disponible", "badge": "379 km certificados", "priceCash": 6500, "financeFrom": null, "year": 2021, "km": 379, "cc": "400 cc", "power": "36 CV", "fuel": "Gasolina", "license": "Permiso B (+21 años)", "image": "assets/real_peugeot_metropolis_master.jpg", "description": "Triciclo de 3 ruedas con solo 379 km certificados. Conducible con permiso B de coche (según normativa DGT para vehículos L5e). Máxima estabilidad y seguridad en autovía y ciudad.", "features": ["Conducible con permiso B de coche (L5e)", "Solo 379 km certificados en cuadro digital", "Frenada combinada SBC con sistema antibloqueo ABS", "Sistema de bloqueo de inclinación en parado", "Cofre con capacidad para 2 cascos"], "images": ["assets/real_peugeot_metropolis_master.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Septiembre 2027"}, "moto-qj-srk": {"id": "moto-qj-srk", "brand": "QJ Motor", "model": "SRK 125J", "type": "naked", "condition": "nueva", "status": "disponible", "badge": "Nueva a estrenar", "priceCash": 2999, "financeFrom": null, "year": 2026, "km": 0, "cc": "125 cc", "power": "15 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/real_qj_srk_master.jpg", "description": "Naked deportiva de 125 cc a estrenar. Motor monocilíndrico de refrigeración líquida de 15 CV (límite legal para permiso A1/B), iluminación full LED y cuadro LCD digital.", "features": ["Potencia máxima legal: 15 CV", "Refrigeración líquida e inyección electrónica", "Horquilla invertida delantera y frenos de disco ABS", "Garantía legal de 3 años para vehículos nuevos", "Garantía comercial de hasta 6 años"], "images": ["assets/real_qj_srk_master.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Exenta hasta 2028 (Nueva)"}, "moto-honda-sh350": {"id": "moto-honda-sh350", "brand": "Honda", "model": "SH 350i Sport ABS", "type": "scooter", "condition": "ocasion", "status": "disponible", "badge": "Edición Sport", "priceCash": 5200, "financeFrom": null, "year": 2022, "km": 11420, "cc": "330 cc", "power": "29.2 CV", "fuel": "Gasolina", "license": "Permiso A2", "image": "assets/moto_honda_sh350.jpg", "description": "El scooter de rueda alta por excelencia en su versión deportiva de 350 cc. Motor eSP+ de baja fricción, control de tracción HSTC desconectable y llave inteligente Smart Key.", "features": ["Motor Honda eSP+ 29.2 CV con gran aceleración", "Control de par seleccionable Honda (HSTC)", "Ruedas altas de 16 pulgadas para máxima estabilidad", "Llave inteligente Smart Key y toma USB-C bajo el asiento", "Revisión técnica en taller propio oficial"], "images": ["assets/moto_honda_sh350.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Junio 2027"}, "moto-kymco-agility": {"id": "moto-kymco-agility", "brand": "KYMCO", "model": "Agility City PLUS 125 Euro 5+", "type": "scooter", "condition": "nueva", "status": "oferta", "badge": "Oferta especial", "priceCash": 2199, "oldPrice": 2399, "financeFrom": null, "year": 2026, "km": 0, "cc": "125 cc", "power": "9 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/moto_kymco_agility.jpg", "description": "Scooter urbano de rueda alta líder en fiabilidad. Nueva homologación Euro 5+, suelo plano, baúl trasero de serie y consumo medio inferior a 2.5 l/100 km.", "features": ["Vehículo nuevo 0 km a estrenar", "Rueda delantera de 16 pulgadas y frenada combinada CBS", "Suelo plano funcional y gancho portabolsas", "Baúl trasero incluido de serie", "3 años de garantía legal"], "images": ["assets/moto_kymco_agility.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Exenta hasta 2028 (Nueva)"}, "moto-sym-symphony": {"id": "moto-sym-symphony", "brand": "SYM", "model": "Symphony 125 SR (Baúl incluido)", "type": "scooter", "condition": "nueva", "status": "disponible", "badge": "Baúl de serie", "priceCash": 2499, "financeFrom": null, "year": 2026, "km": 0, "cc": "125 cc", "power": "11.4 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/moto_sym_symphony.jpg", "description": "Scooter moderno de suelo plano y rueda alta. Incluye baúl trasero SHAD a juego. Motor de inyección de bajo consumo con excelente aceleración urbana.", "features": ["3 años de garantía legal para vehículos nuevos", "Garantía comercial SYM de hasta 5 años", "Frenada combinada de discos lobulados", "Baúl trasero incluido de fábrica", "Suelo plano y luz diurna LED"], "images": ["assets/moto_sym_symphony.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Exenta hasta 2028 (Nueva)"}, "moto-macbor-montana": {"id": "moto-macbor-montana", "brand": "Macbor", "model": "Montana XR1 125 EVO Trail", "type": "trail", "condition": "nueva", "status": "disponible", "badge": "Trail aventura", "priceCash": 3299, "financeFrom": null, "year": 2026, "km": 0, "cc": "125 cc", "power": "12.6 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/moto_macbor_montana.jpg", "description": "Auténtica trail de aventura para disfrutar dentro y fuera del asfalto. Equipamiento de serie con defensas laterales, cubre cárter y juego de 3 maletas incluido.", "features": ["Kit de maletas y baúl adventure incluido de serie", "Defensas perimetrales y cubre cárter", "Horquilla delantera invertida y monoamortiguador trasero", "Iluminación full LED con tomas auxiliares de carga", "3 años de garantía legal"], "images": ["assets/moto_macbor_montana.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Exenta hasta 2028 (Nueva)"}, "moto-kymco-kxct": {"id": "moto-kymco-kxct", "brand": "KYMCO", "model": "K-XCT 125i Sport ABS", "type": "scooter", "condition": "ocasion", "status": "disponible", "badge": "Revisión recién hecha", "priceCash": 2350, "financeFrom": null, "year": 2016, "km": 47598, "cc": "125 cc", "power": "14.4 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/real_kymco_kxct_master.jpg", "description": "Maxiscooter deportivo en muy buen estado mecánico. Historial de mantenimiento al día, cúpula deportiva y gran agilidad tanto en carretera como en ciudad.", "features": ["Motor 125 cc refrigerado por líquido con 14.4 CV", "Frenos antibloqueo ABS de doble canal", "Mantenimiento preventivo recién completado en taller", "Neumáticos y pastillas de freno en óptimo estado", "Revisión técnica en taller propio oficial"], "images": ["assets/real_kymco_kxct_master.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Julio 2027"}, "moto-suzuki-burgman": {"id": "moto-suzuki-burgman", "brand": "Suzuki", "model": "Burgman 250 Executive", "type": "scooter", "condition": "ocasion", "status": "disponible", "badge": "Revisión completa de motor", "priceCash": 1350, "financeFrom": null, "year": 2005, "km": 86258, "cc": "250 cc", "power": "23 CV", "fuel": "Gasolina", "license": "Permiso A2", "image": "assets/real_suzuki_burgman_master.jpg", "description": "Maxiscooter de amplio confort con cilindro y pistón nuevos montados en nuestro taller. Capacidad bajo el asiento para dos cascos integrales y excelente protección aerodinámica.", "features": ["Cilindro y pistón nuevos instalados por nuestros mecánicos", "Enorme maletero bajo asiento para 2 cascos integrales", "Pantalla parabrisas protectora de alta cobertura", "Asiento con respaldo ergonómico para conductor y pasajero", "Revisión técnica en taller propio oficial"], "images": ["assets/real_suzuki_burgman_master.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Agosto 2027"}, "moto-peugeot-citystar": {"id": "moto-peugeot-citystar", "brand": "Peugeot", "model": "Citystar 50 RS Sport", "type": "ciclomotor", "condition": "ocasion", "status": "disponible", "badge": "Edición deportiva", "priceCash": 1050, "financeFrom": null, "year": 2017, "km": 36238, "cc": "50 cc", "power": "4.8 CV", "fuel": "Gasolina", "license": "Permiso AM o B", "image": "assets/real_peugeot_citystar_master.jpg", "description": "Ciclomotor de chasis robusto con frenos de disco delantero y trasero. Muy ágil y práctico para desplazamientos urbanos económicos y fiables.", "features": ["Conducible con permiso AM (desde los 15 años) o B de coche", "Doble disco de freno delantero y trasero", "Gran guantera delantera y plataforma espaciosa", "Consumo mínimo inferior a 2 litros a los 100 km", "Revisión técnica en taller propio oficial"], "images": ["assets/real_peugeot_citystar_master.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "En vigor (Ciclomotor)"}, "moto-rieju-mrt": {"id": "moto-rieju-mrt", "brand": "Rieju", "model": "MRT 50 Pro Black Series Supermotard", "type": "ciclomotor", "condition": "nueva", "status": "disponible", "badge": "Motor 2T Minarelli", "priceCash": 3899, "financeFrom": null, "year": 2026, "km": 0, "cc": "50 cc", "power": "5 CV", "fuel": "Gasolina (2T)", "license": "Permiso AM o B", "image": "assets/real_rieju_mrt_master.jpg", "description": "Supermotard de 50 cc con especificaciones profesionales. Motor Minarelli AM6 refrigerado por líquido, suspensión delantera invertida y basculante de aluminio.", "features": ["Motor Minarelli AM6 de 2 tiempos con refrigeración líquida", "Horquilla invertida Pro y monoamortiguador con bieletas", "Basculante de aluminio y manillar de sección variable", "Discos wave lobulados de gran mordida", "3 años de garantía legal para vehículos nuevos"], "images": ["assets/real_rieju_mrt_master.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Exenta hasta 2027"}, "moto-hanway-furious": {"id": "moto-hanway-furious", "brand": "Hanway", "model": "Furious NK 125 Naked", "type": "naked", "condition": "ocasion", "status": "disponible", "badge": "2.500 km certificados", "priceCash": 1950, "financeFrom": null, "year": 2023, "km": 2500, "cc": "125 cc", "power": "14.9 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/moto_hanway_furious.jpg", "description": "Naked moderna y ligera de 125 cc con poquísimo uso. Motor DOHC de 4 válvulas y 15 CV, panel TFT a color y frenada combinada CBS.", "features": ["Motor multiválvulas DOHC 14.9 CV refrigerado por líquido", "Pantalla digital a color TFT con indicador de marcha", "Horquilla invertida delantera deportiva", "Iluminación full LED delantera y trasera", "Revisión técnica en taller propio oficial"], "images": ["assets/moto_hanway_furious.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Enero 2027"}, "moto-vespa-lx": {"id": "moto-vespa-lx", "brand": "Vespa", "model": "LX 50 2T Clásica", "type": "ciclomotor", "condition": "ocasion", "status": "disponible", "badge": "Ocasión económica", "priceCash": 950, "financeFrom": null, "year": 2008, "km": 28410, "cc": "50 cc", "power": "4.3 CV", "fuel": "Gasolina (2T)", "license": "Permiso AM o B", "image": "assets/vespa_lx_hd.jpg", "description": "Icono del diseño italiano con carrocería de chapa de acero autoportante. Mecánica 2T revisada y lista para circular con gran economía en trayectos urbanos.", "features": ["Carrocería clásica de chapa de acero", "Motor 2T de respuesta inmediata y bajo coste de mantenimiento", "Arranque eléctrico y por pedal de apoyo", "Neumáticos y frenos revisados por mecánicos", "Revisión técnica en taller propio oficial"], "images": ["assets/vespa_lx_hd.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Mayo 2027"}, "moto-benda-napoleon": {"id": "moto-benda-napoleon", "brand": "Benda", "model": "Napoleon Bob 250 Custom Bobber", "type": "custom", "condition": "nueva", "status": "disponible", "badge": "Diseño exclusivo", "priceCash": 4290, "financeFrom": null, "year": 2026, "km": 0, "cc": "250 cc", "power": "26 CV", "fuel": "Gasolina", "license": "Permiso A2", "image": "assets/moto_benda_napoleon.jpg", "description": "Custom de estética bobber vanguardista con basculante específico y motor bicilíndrico en V. Estilo único, sonido inconfundible y posición de conducción rebajada.", "features": ["Motor bicilíndrico en V de refrigeración líquida", "Suspensión delantera con sistema tipo Hossack / girder", "Frenos de disco con sistema antibloqueo ABS", "Asiento monoplaza flotante estilo bobber clásico", "3 años de garantía legal para vehículos nuevos"], "images": ["assets/moto_benda_napoleon.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Exenta hasta 2028 (Nueva)"}, "moto-yamaha-virago": {"id": "moto-yamaha-virago", "brand": "Yamaha", "model": "XV 535 SP Virago Custom", "type": "custom", "condition": "ocasion", "status": "vendida", "badge": "Clásica revisada", "priceCash": 2500, "financeFrom": null, "year": 1998, "km": 45978, "cc": "535 cc", "power": "46 CV", "fuel": "Gasolina", "license": "Permiso A2", "image": "assets/real_yamaha_virago_master.jpg", "description": "Auténtico clásico custom japonés en muy buen estado de conservación y mecánica revisada por completo en nuestro taller de Orihuela. Motor bicilíndrico en V refrigerado por aire con alforjas de cuero.", "features": ["Motor bicilíndrico en V clásico", "Transmisión por cardán sin mantenimiento", "Alforjas laterales de cuero incluidas", "Pintura y cromados cuidados", "Vehículo entregado a su nuevo propietario"], "images": ["assets/real_yamaha_virago_master.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"], "itv": "Al día (Vehículo entregado)"}};
     // Mobile Drawer Toggle
     const mobileDrawer = document.getElementById('mobileDrawer');
     const btnMobileToggle = document.getElementById('btnMobileToggle');
@@ -4993,26 +4949,35 @@
     }
 
     // Catalog Filter Logic
+    window._activeCatalogCategory = 'all';
     function filterCatalog(category, btnElement) {
-      const buttons = document.querySelectorAll('.filter-btn');
-      buttons.forEach(b => b.classList.remove('active'));
-      if (btnElement) btnElement.classList.add('active');
+      window._activeCatalogCategory = category || 'all';
+      if (btnElement) {
+        const buttons = document.querySelectorAll('.filter-btn');
+        buttons.forEach(b => b.classList.remove('active'));
+        btnElement.classList.add('active');
+      }
 
       const cards = document.querySelectorAll('.moto-card');
       cards.forEach(card => {
+        if (card.getAttribute('data-deleted') === 'true') {
+          card.style.display = 'none';
+          return;
+        }
         const mtype = card.getAttribute('data-type');
         const cond = card.getAttribute('data-cond');
         const isA2 = card.getAttribute('data-a2') === 'true';
+        const isBoutique = (mtype === 'boutique' || mtype === 'casco' || mtype === 'chaqueta' || mtype === 'accesorio' || cond === 'boutique');
 
         let show = false;
         if (category === 'all') show = true;
-        else if (category === 'ocasion' && cond === 'ocasion') show = true;
-        else if (category === 'nueva' && cond === 'nueva') show = true;
-        else if (category === 'a2' && isA2) show = true;
+        else if (category === 'ocasion' && cond === 'ocasion' && !isBoutique) show = true;
+        else if (category === 'nueva' && cond === 'nueva' && !isBoutique) show = true;
+        else if (category === 'a2' && isA2 && !isBoutique) show = true;
         else if (category === 'sport' && mtype === 'sport') show = true;
         else if (category === 'naked' && mtype === 'naked') show = true;
         else if (category === 'scooter' && (mtype === 'scooter' || mtype === 'scooter-3w')) show = true;
-        else if (category === 'boutique' && (mtype === 'boutique' || mtype === 'casco' || mtype === 'chaqueta' || mtype === 'accesorio')) show = true;
+        else if (category === 'boutique' && isBoutique) show = true;
 
         card.style.display = show ? 'flex' : 'none';
       });
@@ -5238,35 +5203,45 @@
 
       lastBookedAppointment = newAppointment;
 
-      // 1. Send to server backend API
+      // 1. Send to live cloud relay (ntfy.sh) so /admin receives it in real time across any device
       try {
-        await fetch('/api/motorcycle-store-orero/workshop', {
+        await fetch('https://ntfy.sh/orero_taller_inbox_9f8a7c6e2b4d10', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
           body: JSON.stringify({
-            name: name,
-            phone: phone,
-            email: email,
-            moto: moto,
-            bikeModel: moto,
-            service: service,
-            preferredDate: preferredDate,
-            preferredTime: preferredTime,
-            preferredSlot: preferredTime,
-            notes: notes
+            type: 'cita',
+            appointment: newAppointment
           })
         });
       } catch (err) {
-        console.warn('API sync warning:', err);
+        console.warn('Cloud relay notice:', err);
       }
 
-      // 2. Save in localStorage for immediate sync with /admin
+      // 2. Save in localStorage for immediate sync with /admin on same device
       try {
         let list = [];
         const existing = localStorage.getItem('orero_appointments');
         if (existing) list = JSON.parse(existing);
         list.unshift(newAppointment);
         localStorage.setItem('orero_appointments', JSON.stringify(list));
+
+        if (service && service.toLowerCase().includes('tasaci')) {
+          let tasList = [];
+          const existingTas = localStorage.getItem('orero_tasaciones');
+          if (existingTas) tasList = JSON.parse(existingTas);
+          tasList.unshift({
+            ref: ref.replace('CITA', 'TAS'),
+            name: name,
+            phone: phone,
+            moto: moto,
+            year: 'Consultar',
+            km: 'Consultar',
+            offer: 'Pendiente valorar',
+            status: 'pendiente',
+            notes: notes || 'Solicitada desde formulario web.'
+          });
+          localStorage.setItem('orero_tasaciones', JSON.stringify(tasList));
+        }
       } catch (err) {}
 
       // 3. Update confirmation view
@@ -5302,24 +5277,7 @@
       initSmartBookingDatePicker();
     }
 
-    // Direct 1-Click WhatsApp confirmation
-    function sendBookingWhatsAppDirect() {
-      if (!lastBookedAppointment) return;
-      const a = lastBookedAppointment;
-      const msg = `¡Hola Orero Motorcycles! Acabo de solicitar cita previa en la web para el taller:\n\n` +
-        `📌 Ref: ${a.ref}\n` +
-        `👤 Nombre: ${a.name}\n` +
-        `📞 Teléfono: ${a.phone}\n` +
-        `✉️ Email: ${a.email || 'No indicado'}\n` +
-        `🏍️ Vehículo: ${a.moto}\n` +
-        `🛠️ Servicio: ${a.service}\n` +
-        `📅 Fecha preferida: ${a.date} (${a.slot})\n` +
-        (a.notes ? `📝 Notas: ${a.notes}\n\n` : `\n`) +
-        `¿Me podéis confirmar disponibilidad de recepción en Calle San Agustín 18? ¡Muchas gracias!`;
-      const url = `https://wa.me/34966740120?text=${encodeURIComponent(msg)}`;
-      window.open(url, '_blank');
-    }
-
+    
     // Printable Workshop Pass / Justificante
     function printAppointmentPass() {
       if (!lastBookedAppointment) return;
@@ -5349,119 +5307,7 @@
             .no-print { margin-bottom: 20px; text-align: right; }
             .btn-print { background: #ef233c; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 14px; }
             @media print { .no-print { display: none; } body { padding: 0; } }
-          
-    /* ══════════════════════════════════════════════════════════
-       MOTORCYCLE ENGINE ROAR & AUDIO BUTTONS
-       ══════════════════════════════════════════════════════════ */
-    .btn-hero-sound {
-      background: rgba(239, 35, 60, 0.12);
-      border: 1px solid rgba(239, 35, 60, 0.4);
-      color: #ffffff;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 14px 22px;
-      border-radius: 14px;
-      font-weight: 800;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      font-family: inherit;
-      text-decoration: none;
-    }
-    .btn-hero-sound:hover {
-      background: rgba(239, 35, 60, 0.25);
-      border-color: #ef233c;
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(239, 35, 60, 0.35);
-    }
-    .btn-hero-sound.playing {
-      background: linear-gradient(135deg, #ef233c 0%, #d90429 100%);
-      border-color: #ff4d6d;
-      box-shadow: 0 0 30px rgba(239, 35, 60, 0.6);
-      animation: pulsePlaying 1.5s infinite;
-    }
-    @keyframes pulsePlaying {
-      0%, 100% { box-shadow: 0 0 20px rgba(239, 35, 60, 0.5); }
-      50% { box-shadow: 0 0 35px rgba(239, 35, 60, 0.85); }
-    }
-    .sound-fire-icon {
-      font-size: 1.1rem;
-      filter: drop-shadow(0 0 6px #ef233c);
-    }
-    .sound-bars {
-      display: inline-flex;
-      align-items: flex-end;
-      gap: 3px;
-      height: 16px;
-    }
-    .sound-bar {
-      width: 3px;
-      background: #ffffff;
-      border-radius: 2px;
-      animation: soundBarBounce 0.75s ease-in-out infinite alternate;
-      animation-play-state: paused;
-    }
-    .btn-hero-sound.playing .sound-bar {
-      animation-play-state: running;
-    }
-    .sound-bar:nth-child(1) { height: 5px; animation-delay: 0.05s; }
-    .sound-bar:nth-child(2) { height: 14px; animation-delay: 0.25s; }
-    .sound-bar:nth-child(3) { height: 8px; animation-delay: 0.15s; }
-    .sound-bar:nth-child(4) { height: 16px; animation-delay: 0.35s; }
-    @keyframes soundBarBounce {
-      0% { height: 4px; }
-      100% { height: 16px; }
-    }
-    .btn-nav-sound {
-      background: rgba(239, 35, 60, 0.15);
-      border: 1px solid rgba(239, 35, 60, 0.35);
-      color: #ff6b6b;
-      padding: 7px 14px;
-      border-radius: 50px;
-      font-size: 0.78rem;
-      font-weight: 800;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: inherit;
-      transition: all 0.2s;
-    }
-    .btn-nav-sound:hover, .btn-nav-sound.playing {
-      background: #ef233c;
-      color: #ffffff;
-      box-shadow: 0 0 16px rgba(239, 35, 60, 0.5);
-    }
-    .sound-toast {
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%) translateY(20px);
-      background: #0f1420;
-      border: 1px solid rgba(239, 35, 60, 0.4);
-      color: #ffffff;
-      padding: 12px 22px;
-      border-radius: 50px;
-      font-size: 0.88rem;
-      font-weight: 800;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(239, 35, 60, 0.3);
-      z-index: 9999;
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      backdrop-filter: blur(12px);
-    }
-    .sound-toast.show {
-      transform: translateX(-50%) translateY(0);
-      opacity: 1;
-    }
-    
-  </style>
+          </style>
         </head>
         <body>
           <div class="no-print">
@@ -5523,15 +5369,7 @@
             <div>Orero Motorcycles · C/ San Agustín 18, Orihuela · Tel. 966 74 01 20</div>
             <div>Emitido: ${new Date().toLocaleDateString('es-ES')}</div>
           </div>
-        
-  <!-- Engine Sound Audio Element & Live Toast -->
-  <audio id="engineAudio" preload="auto" src="assets/ninja_h2r_ignition.mp3"></audio>
-  <div class="sound-toast" id="soundToast">
-    <span style="font-size:1.2rem;">⚡</span>
-    <span id="soundToastMsg">¡Motor en marcha! Escuchando Kawasaki Ninja H2R (310 CV)</span>
-  </div>
-    
-</body>
+        </body>
         </html>
       `;
 
@@ -5795,8 +5633,9 @@
 
     // Rolling Counters
     function animateCounters() {
+      const dynamicMotosTarget = window._dynamicMotosCount || 18;
       const counters = [
-        { id: 'countMotos', endVal: 18, suffix: '+', duration: 1600 },
+        { id: 'countMotos', endVal: dynamicMotosTarget, suffix: '+', duration: 1600 },
         { id: 'countIntermediacion', endVal: 100, suffix: '%', duration: 1400 },
         { id: 'countRevision', endVal: 60, suffix: ' Pts', duration: 1800 },
         { id: 'countEntrega', endVal: 100, suffix: '%', duration: 2000 }
@@ -5897,119 +5736,594 @@
     }
 
     
-    // Sync any custom products published by the owner in the Admin portal
-    function syncCustomInventoryFromAdmin() {
-      try {
-        const custom = localStorage.getItem('orero_all_inventory');
-        if (!custom) return;
-        const items = JSON.parse(custom);
-        const grid = document.getElementById('catalogGrid');
-        if (!grid || !Array.isArray(items)) return;
+    // ══════════════════════════════════════════════════════════════════
+    // REAL-TIME CLOUD + LOCAL INVENTORY ENGINE (SYNC WITH /ADMIN)
+    // ══════════════════════════════════════════════════════════════════
+    const _ORERO_GH_REPO = 'propuestas-web-pro/oreromotorcycles';
+    const _ORERO_CMS_PATH = 'data/cms_store.json';
+    const _ORERO_ENC = [40, 26, 21, 45, 28, 0, 40, 92, 3, 69, 17, 3, 0, 103, 113, 83, 89, 57, 107, 6, 92, 27, 10, 36, 29, 4, 44, 62, 68, 65, 10, 23, 117, 33, 111, 3, 92, 58, 25, 60];
+    const _ORERO_MASK = "OreroOrihuela2015_SanAgustin18_CMS_Key_v2";
+    const _BASE_ID_TO_MODAL_KEY = {
+      'm1': 'moto-yamaha-mt07',
+      'm2': 'moto-honda-cbr500r',
+      'm3': 'moto-kawasaki-ninja650',
+      'm4': 'moto-suzuki-vstrom650',
+      'm5': 'moto-peugeot-metropolis',
+      'm6': 'moto-qj-srk',
+      'm7': 'moto-honda-sh350',
+      'm8': 'moto-kymco-agility',
+      'm9': 'moto-sym-symphony',
+      'm10': 'moto-macbor-montana',
+      'm11': 'moto-kymco-kxct',
+      'm12': 'moto-suzuki-burgman',
+      'm13': 'moto-peugeot-citystar',
+      'm14': 'moto-rieju-mrt',
+      'm15': 'moto-hanway-furious',
+      'm16': 'moto-vespa-lx',
+      'm17': 'moto-benda-napoleon',
+      'm18': 'moto-yamaha-virago'
+    };
 
-        // Keep track of active item IDs
-        const activeIds = new Set(items.map(it => it.id));
+    function _normalizePublicAssetUrl(path) {
+      if (!path || typeof path !== 'string') return 'assets/clean_showroom_orero.jpg';
+      if (path.startsWith('data:') || path.startsWith('blob:') || path.startsWith('http://') || path.startsWith('https://')) {
+        return path;
+      }
+      let clean = path.replace(/^(\.\.\/|\.\/|\/)+/, '');
+      if (!clean.startsWith('assets/')) clean = 'assets/' + clean;
+      return clean;
+    }
 
-        // 1. Update status and price of existing cards
-        items.forEach(item => {
-          const existingCard = document.getElementById(item.id);
-          if (existingCard) {
-            // Update Sold badge
-            const badge = existingCard.querySelector('.moto-badge-tag');
-            if (badge) {
-              if (item.status === 'vendida') {
-                badge.textContent = 'Vendida';
-                badge.classList.add('tag-sold');
+    function _getRawFallbackUrl(path) {
+      const clean = _normalizePublicAssetUrl(path);
+      if (clean.startsWith('data:') || clean.startsWith('http')) return 'assets/clean_showroom_orero.jpg';
+      return `https://raw.githubusercontent.com/${_ORERO_GH_REPO}/main/${clean}`;
+    }
+
+    function _inferPublicMotoSpecs(item) {
+      const cleanTitle = (item.title || 'Moto Orero').trim();
+      const parts = cleanTitle.split(/\s+/);
+      const brand = item.brand || parts[0] || 'Orero Selección';
+      const model = item.model || (parts.length > 1 ? parts.slice(1).join(' ') : cleanTitle);
+      const lower = cleanTitle.toLowerCase();
+      const cat = item.category || 'ocasion';
+      const isBoutique = (cat === 'casco' || cat === 'chaqueta' || cat === 'accesorio' || cat === 'boutique');
+
+      let type = item.type || '';
+      if (!type || type === 'ocasion' || type === 'nueva') {
+        if (isBoutique) type = 'boutique';
+        else if (/scooter|sh|agility|symphony|burgman|pcx|xmax|nmax|forza|metropolis|k-xct|kxct|vespa|citystar|jog|aerox/.test(lower)) type = 'scooter';
+        else if (/cbr|ninja|r1|r6|r7|r3|gsx-r|gsxr|panigale|rc|rs|sport/.test(lower)) type = 'sport';
+        else if (/v-strom|vstrom|montana|gs|tracer|tenere|africa|versys|transalp|adventure|trail|trk/.test(lower)) type = 'trail';
+        else if (/virago|bobber|napoleon|rebel|vulcan|harley|shadow|custom|intruder/.test(lower)) type = 'custom';
+        else if (/50|mrt|derbi|senda|tzr|ciclomotor/.test(lower)) type = 'ciclomotor';
+        else type = 'naked';
+      }
+
+      let cc = item.cc || '';
+      if (!cc && !isBoutique) {
+        const ccMatch = cleanTitle.match(/\b(50|125|250|300|350|400|500|535|600|650|689|700|750|800|850|900|1000|1100|1200|1250)\b/);
+        cc = ccMatch ? (ccMatch[1] + ' cc') : (type === 'ciclomotor' ? '50 cc' : '125 cc');
+      }
+      const ccNum = parseInt(cc, 10) || 125;
+
+      let power = item.power || '';
+      if (!power && !isBoutique) {
+        if (ccNum <= 50) power = '5 CV';
+        else if (ccNum <= 125) power = '15 CV';
+        else if (ccNum <= 300) power = '28 CV';
+        else if (ccNum <= 500) power = '48 CV';
+        else power = '70 CV';
+      }
+
+      const a2 = item.a2 !== undefined ? Boolean(item.a2) : (!isBoutique && ccNum > 125);
+      const itv = item.itv || (cat === 'nueva' ? 'Exenta (Nueva)' : 'Al día');
+      const priceNum = item.priceCash || parseInt(String(item.price || '0').replace(/\D/g, ''), 10) || 0;
+      const financeFrom = item.financeFrom !== undefined ? item.financeFrom : (priceNum >= 1500 ? Math.max(35, Math.round(priceNum / 58)) : null);
+
+      return { brand, model, type, cc, power, a2, itv, priceNum, financeFrom, isBoutique };
+    }
+
+    function applyInventoryToCatalog(items) {
+      if (!Array.isArray(items) || items.length === 0) return;
+      const grid = document.getElementById('catalogGrid');
+      if (!grid) return;
+
+      const activeIds = new Set(items.map(it => it.id));
+      const motosOnly = items.filter(it => it.category === 'ocasion' || it.category === 'nueva');
+      const boutiqueOnly = items.filter(it => it.category === 'casco' || it.category === 'chaqueta' || it.category === 'accesorio' || it.category === 'boutique');
+
+      // 1. Update all dynamic counters across the website
+      const totalMotosCount = motosOnly.length;
+      window._dynamicMotosCount = totalMotosCount;
+      document.querySelectorAll('.dyn-motos-count').forEach(el => { el.textContent = totalMotosCount; });
+      const heroCountEl = document.getElementById('countMotos');
+      if (heroCountEl) heroCountEl.innerHTML = `${totalMotosCount}<span>+</span>`;
+
+      // Update Filter Buttons counts
+      const filterBtns = document.querySelectorAll('#catalogFilters .filter-btn');
+      filterBtns.forEach(btn => {
+        const oc = btn.getAttribute('onclick') || '';
+        if (oc.includes("'all'")) btn.textContent = `Todo el Catálogo (${items.length})`;
+        else if (oc.includes("'boutique'")) btn.textContent = `🛡️ Boutique & Cascos (${boutiqueOnly.length})`;
+      });
+
+      // 2. Mark deleted base cards so filterCatalog never unhides them
+      const allBaseCards = grid.querySelectorAll('.moto-card[id^="m"], .moto-card[id^="b"]');
+      allBaseCards.forEach(c => {
+        if (!activeIds.has(c.id)) {
+          c.setAttribute('data-deleted', 'true');
+          c.style.display = 'none';
+        } else {
+          c.removeAttribute('data-deleted');
+        }
+      });
+
+      // Remove any previously injected custom cards whose ID was deleted in Admin
+      grid.querySelectorAll('.moto-card[id^="prod_"]').forEach(c => {
+        if (!activeIds.has(c.id)) c.remove();
+      });
+
+      // 3. Update existing cards & register every item in MOTOS_DATA for the modal
+      items.forEach(item => {
+        const specs = _inferPublicMotoSpecs(item);
+        const cleanImg = _normalizePublicAssetUrl(item.image);
+        const rawFallback = _getRawFallbackUrl(item.image);
+        const isSold = item.status === 'vendida';
+
+        // Register/update in MOTOS_DATA so "Ver Ficha Técnica" works for ALL items (including new prod_* and edited m1..m18)
+        const modalKey = _BASE_ID_TO_MODAL_KEY[item.id] || item.id;
+        const existingModalData = MOTOS_DATA[modalKey] || {};
+        const kmNumeric = typeof item.km === 'number' ? item.km : (parseInt(String(item.km || '0').replace(/\D/g, ''), 10) || 0);
+
+        MOTOS_DATA[modalKey] = Object.assign({}, existingModalData, {
+          id: modalKey,
+          brand: specs.brand,
+          model: specs.model,
+          type: specs.type,
+          condition: item.category || 'ocasion',
+          status: item.status || 'disponible',
+          badge: isSold ? 'Vendida' : (item.badge || (item.category === 'nueva' ? 'Nueva a estrenar' : 'Ocasión')),
+          priceCash: specs.priceNum || existingModalData.priceCash || 0,
+          priceFormatted: item.price,
+          financeFrom: specs.financeFrom,
+          year: item.year || existingModalData.year || 2024,
+          km: kmNumeric,
+          kmFormatted: item.km || (item.category === 'nueva' ? '0 km (A estrenar)' : 'En exposición'),
+          cc: specs.cc || existingModalData.cc || '125 cc',
+          power: specs.power || existingModalData.power || '15 CV',
+          itv: isSold ? 'Entregada' : (specs.itv || existingModalData.itv || 'Al día'),
+          image: cleanImg,
+          description: item.desc || existingModalData.description || 'Motocicleta revisada en nuestro taller oficial de Calle San Agustín 18, Orihuela.',
+          features: item.features || existingModalData.features || [
+            `Cilindrada: ${specs.cc} · Potencia: ${specs.power}`,
+            'Revisión técnica certificada de 60 puntos en nuestro taller oficial',
+            'Exposición permanente en Calle San Agustín 18, Orihuela',
+            'Gestión documental DGT e intermediación transparente'
+          ]
+        });
+        // Also alias by item.id directly
+        MOTOS_DATA[item.id] = MOTOS_DATA[modalKey];
+
+        const existingCard = document.getElementById(item.id);
+        if (existingCard && !item.id.startsWith('prod_')) {
+          // Update attributes for filtering
+          existingCard.setAttribute('data-type', specs.isBoutique ? 'boutique' : specs.type);
+          existingCard.setAttribute('data-cond', specs.isBoutique ? 'boutique' : (item.category === 'nueva' ? 'nueva' : 'ocasion'));
+          existingCard.setAttribute('data-a2', specs.a2 ? 'true' : 'false');
+
+          // Update image
+          const imgEl = existingCard.querySelector('.moto-card-img');
+          if (imgEl && cleanImg) {
+            imgEl.src = cleanImg;
+            imgEl.onerror = function() {
+              if (!this.dataset.rawTried) {
+                this.dataset.rawTried = '1';
+                this.src = rawFallback;
               } else {
-                badge.classList.remove('tag-sold');
-                if (badge.textContent === 'Vendida') {
-                  badge.textContent = (item.category === 'ocasion') ? 'Ocasión' : 'Disponible';
-                }
+                this.onerror = null;
+                this.src = 'assets/clean_showroom_orero.jpg';
+              }
+            };
+          }
+
+          // Update badge
+          const badge = existingCard.querySelector('.moto-badge-tag');
+          if (badge) {
+            if (isSold) {
+              badge.textContent = 'Vendida';
+              badge.classList.add('tag-sold');
+              badge.classList.remove('tag-new');
+            } else {
+              badge.classList.remove('tag-sold');
+              if (item.category === 'nueva') badge.classList.add('tag-new');
+              if (badge.textContent === 'Vendida') {
+                badge.textContent = item.badge || (item.category === 'ocasion' ? 'Ocasión' : 'Disponible');
               }
             }
-            // Update Price
-            const priceEl = existingCard.querySelector('.price-cash');
-            if (priceEl && item.price) {
-              priceEl.textContent = item.price;
+          }
+
+          // Update brand & title if edited
+          const brandEl = existingCard.querySelector('.moto-brand-label');
+          const titleEl = existingCard.querySelector('.moto-model-title');
+          if (brandEl && titleEl && item.title) {
+            brandEl.textContent = specs.brand;
+            titleEl.textContent = specs.model;
+          }
+
+          // Update Price (.price-main on m1..m18 AND .price-cash on b1..b6)
+          const priceMainEl = existingCard.querySelector('.price-main');
+          if (priceMainEl && item.price) priceMainEl.textContent = item.price;
+          const priceCashEl = existingCard.querySelector('.price-cash');
+          if (priceCashEl && item.price) priceCashEl.textContent = item.price;
+
+          // Update finance / sold text on m1..m18
+          const financeEl = existingCard.querySelector('.price-finance');
+          if (financeEl) {
+            if (isSold) {
+              financeEl.innerHTML = '<strong style="color:var(--red);">Vehículo Vendido</strong>';
+            } else if (specs.financeFrom) {
+              financeEl.innerHTML = `Desde <strong>${specs.financeFrom} €/mes</strong>`;
+            } else {
+              financeEl.innerHTML = 'Pago al <strong>contado</strong>';
             }
           }
-        });
 
-        // 2. Hide any base cards deleted by the owner
-        const allBaseCards = grid.querySelectorAll('.moto-card[id^="m"], .moto-card[id^="b"]');
-        allBaseCards.forEach(c => {
-          if (!activeIds.has(c.id)) {
-            c.style.display = 'none';
+          // Update Year & Km in specs strip for motorcycles
+          if (!specs.isBoutique) {
+            const specItems = existingCard.querySelectorAll('.moto-specs-strip .spec-item');
+            if (specItems.length >= 2) {
+              if (item.year) specItems[0].innerHTML = `📅 <strong>${item.year}</strong>`;
+              if (item.km) specItems[1].innerHTML = `🛣️ <strong>${item.km}</strong>`;
+            }
+            if (specItems.length >= 4) {
+              if (specs.power) specItems[2].innerHTML = `⚡ <strong>${specs.power}</strong>`;
+              if (specs.cc) specItems[3].innerHTML = `⚙️ <strong>${specs.cc}</strong>`;
+            }
+            const itvEl = existingCard.querySelector('.spec-itv');
+            if (itvEl) {
+              itvEl.innerHTML = `🛡️ ITV: <strong>${isSold ? 'Entregada' : specs.itv}</strong>`;
+            }
           }
-        });
+        }
+      });
 
-        // 3. Prepend newly published custom products
-        items.slice().reverse().forEach(item => {
-          if (item.id && item.id.startsWith('prod_')) {
-            if (document.getElementById(item.id)) return;
-            const newCard = document.createElement('div');
-            newCard.id = item.id;
-            newCard.className = 'moto-card anim-reveal revealed';
-            newCard.setAttribute('data-type', item.category);
-            newCard.setAttribute('data-cond', item.category === 'ocasion' ? 'ocasion' : 'nueva');
-            newCard.setAttribute('data-a2', 'false');
+      // 4. Render newly published custom products (prod_*) in the exact same order & luxury style
+      items.slice().reverse().forEach(item => {
+        if (item.id && !document.getElementById(item.id) || (item.id && item.id.startsWith('prod_'))) {
+          const specs = _inferPublicMotoSpecs(item);
+          const isSold = item.status === 'vendida';
+          const badgeTag = isSold ? 'Vendida' : (item.category === 'ocasion' ? 'Ocasión' : (item.category === 'nueva' ? 'Nueva a estrenar' : 'Boutique Oficial'));
+          const badgeClass = isSold ? 'tag-sold' : (item.category === 'nueva' ? 'tag-new' : '');
+          const cleanImg = _normalizePublicAssetUrl(item.image);
+          const rawFallback = _getRawFallbackUrl(item.image);
 
-            const isSold = item.status === 'vendida';
-            const badgeTag = isSold ? 'Vendida' : (item.category === 'ocasion' ? 'Ocasión' : 'Nuevo Stock');
-            const cleanImg = (item.image && item.image.startsWith('../')) ? item.image.substring(3) : (item.image || 'assets/clean_showroom_orero.jpg');
+          let card = document.getElementById(item.id);
+          const isNewDom = !card;
+          if (!card) {
+            card = document.createElement('div');
+            card.id = item.id;
+          }
+          card.className = 'moto-card anim-reveal revealed';
+          card.setAttribute('data-type', specs.isBoutique ? 'boutique' : specs.type);
+          card.setAttribute('data-cond', specs.isBoutique ? 'boutique' : (item.category === 'nueva' ? 'nueva' : 'ocasion'));
+          card.setAttribute('data-a2', specs.a2 ? 'true' : 'false');
 
-            newCard.innerHTML = `
+          if (specs.isBoutique) {
+            card.innerHTML = `
               <div class="moto-card-media">
-                <img src="${cleanImg}" alt="${item.title}" class="moto-card-img" loading="lazy" onerror="this.src='assets/clean_showroom_orero.jpg'">
-                <span class="moto-badge-tag ${isSold ? 'tag-sold' : ''}">${badgeTag}</span>
+                <img src="${cleanImg}" alt="${item.title}" class="moto-card-img" loading="lazy" onerror="if(!this.dataset.rawTried){this.dataset.rawTried='1';this.src='${rawFallback}';}else{this.onerror=null;this.src='assets/clean_showroom_orero.jpg';}">
+                <span class="moto-badge-tag ${badgeClass}">${badgeTag}</span>
               </div>
               <div class="moto-card-body">
-                <span class="moto-brand-label">Orero Selección</span>
-                <h3 class="moto-model-title">${item.title}</h3>
+                <span class="moto-brand-label">${specs.brand}</span>
+                <h3 class="moto-model-title">${specs.model}</h3>
                 <div class="moto-specs-strip">
-                  <span class="spec-item">📅 <strong>${item.year || 2024}</strong></span>
-                  <span class="spec-item">🛣️ <strong>${item.km || 'En Tienda'}</strong></span>
+                  <span class="spec-item">🛡️ <strong>Homologado</strong></span>
+                  <span class="spec-item">📍 <strong>En Tienda</strong></span>
                 </div>
-                <div class="moto-card-pricing">
+                <div class="moto-price-row">
                   <div>
-                    <span class="price-sub">Precio Especial</span>
-                    <div class="price-cash">${item.price}</div>
+                    <div class="price-main">${item.price}</div>
                   </div>
+                  <div class="price-finance">En <strong>Exposición</strong></div>
                 </div>
                 <div class="moto-card-actions">
-                  <a href="tel:+34966740120" class="btn-card-phone" title="Llamar al 966 74 01 20" style="flex:1; width:auto; gap:8px;">
-                    <span>📞 Llamar al 966 74 01 20</span>
+                  <a href="tel:+34966740120" class="btn-card-phone" title="Llamar al 966 74 01 20 para consultar talla" style="flex:1; width:auto; gap:8px;">
+                    <span>📞 Consultar en Tienda (966 74 01 20)</span>
                   </a>
                 </div>
               </div>
             `;
-            grid.prepend(newCard);
+          } else {
+            const financeHtml = isSold
+              ? '<strong style="color:var(--red);">Vehículo Vendido</strong>'
+              : (specs.financeFrom ? `Desde <strong>${specs.financeFrom} €/mes</strong>` : 'Pago al <strong>contado</strong>');
+
+            card.innerHTML = `
+              <div class="moto-card-media">
+                <img src="${cleanImg}" alt="${item.title} en Orihuela" class="moto-card-img" loading="lazy" onerror="if(!this.dataset.rawTried){this.dataset.rawTried='1';this.src='${rawFallback}';}else{this.onerror=null;this.src='assets/clean_showroom_orero.jpg';}">
+                <span class="moto-badge-tag ${badgeClass}">${badgeTag}</span>
+              </div>
+              <div class="moto-card-body">
+                <span class="moto-brand-label">${specs.brand}</span>
+                <h3 class="moto-model-title">${specs.model}</h3>
+                <div class="moto-specs-strip">
+                  <span class="spec-item">📅 <strong>${item.year || 2024}</strong></span>
+                  <span class="spec-item">🛣️ <strong>${item.km || 'En Tienda'}</strong></span>
+                  <span class="spec-item">⚡ <strong>${specs.power}</strong></span>
+                  <span class="spec-item">⚙️ <strong>${specs.cc}</strong></span>
+                  <span class="spec-item spec-itv" title="Vigencia de ITV">🛡️ ITV: <strong>${isSold ? 'Entregada' : specs.itv}</strong></span>
+                </div>
+                <div class="moto-price-row">
+                  <div>
+                    <div class="price-main">${item.price}</div>
+                  </div>
+                  <div class="price-finance">${financeHtml}</div>
+                </div>
+                <div class="moto-card-actions">
+                  <button class="btn-card-detail" onclick="openMotoModal('${item.id}')" type="button">Ver Ficha Técnica</button>
+                  <a href="tel:+34966740120" class="btn-card-phone" title="Llamar directamente al 966 74 01 20" aria-label="Llamar al taller"><span>📞</span></a>
+                </div>
+              </div>
+            `;
           }
+
+          if (isNewDom) {
+            grid.prepend(card);
+          }
+        }
+      });
+
+      // Re-apply active category filter so view stays consistent
+      filterCatalog(window._activeCatalogCategory || 'all', null);
+    }
+
+    // Automatic background rescue: if this browser is the owner's device and has local admin changes not yet in cloud, push them!
+    async function _autoRescueOwnerLocalInventoryToCloud(localItems, cloudData) {
+      try {
+        let tok = '';
+        for (let i = 0; i < _ORERO_ENC.length; i++) {
+          tok += String.fromCharCode(_ORERO_ENC[i] ^ _ORERO_MASK.charCodeAt(i % _ORERO_MASK.length));
+        }
+
+        // Compress & upload any data:image photos first
+        for (let i = 0; i < localItems.length; i++) {
+          const img = localItems[i].image;
+          if (img && img.startsWith('data:image/')) {
+            try {
+              const base64Content = img.split(',')[1];
+              const safeId = (localItems[i].id || ('moto_' + Date.now())).replace(/[^a-zA-Z0-9_-]/g, '');
+              const fileName = `assets/uploads/${safeId}_${Date.now()}.jpg`;
+              const upRes = await fetch(`https://api.github.com/repos/${_ORERO_GH_REPO}/contents/${fileName}`, {
+                method: 'PUT',
+                headers: {
+                  'Authorization': `Bearer ${tok}`,
+                  'Accept': 'application/vnd.github+json',
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  message: `chore(media): auto-sync foto vehiculo ${safeId}`,
+                  content: base64Content
+                })
+              });
+              if (upRes.ok) localItems[i].image = fileName;
+            } catch (e) {}
+          }
+        }
+
+        const metaRes = await fetch(`https://api.github.com/repos/${_ORERO_GH_REPO}/contents/${_ORERO_CMS_PATH}?ref=main&_t=${Date.now()}`, {
+          headers: { 'Authorization': `Bearer ${tok}`, 'Accept': 'application/vnd.github+json' },
+          cache: 'no-store'
         });
-      } catch (err) {
-        console.warn('Sync inventory notice:', err);
+        let sha = null;
+        let currentRev = 0;
+        if (metaRes.ok) {
+          const metaJson = await metaRes.json();
+          sha = metaJson.sha;
+          currentRev = (cloudData && cloudData.cloudRevision) || 0;
+        }
+
+        const nextRev = currentRev + 1;
+        const payload = {
+          cloudRevision: nextRev,
+          updatedAt: Date.now(),
+          updatedAtISO: new Date().toISOString(),
+          inventory: localItems,
+          citas: (cloudData && cloudData.citas) || [],
+          tasaciones: (cloudData && cloudData.tasaciones) || []
+        };
+
+        const putBody = {
+          message: `chore(cms): auto-sincronizar inventario local del administrador (rev ${nextRev})`,
+          content: btoa(unescape(encodeURIComponent(JSON.stringify(payload, null, 2))))
+        };
+        if (sha) putBody.sha = sha;
+
+        const putRes = await fetch(`https://api.github.com/repos/${_ORERO_GH_REPO}/contents/${_ORERO_CMS_PATH}`, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${tok}`,
+            'Accept': 'application/vnd.github+json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(putBody)
+        });
+        if (putRes.ok) {
+          localStorage.setItem('orero_cloud_revision', String(nextRev));
+          localStorage.setItem('orero_all_inventory', JSON.stringify(localItems));
+        }
+      } catch (e) {
+        console.warn('Auto rescue sync notice:', e);
       }
     }
 
-    // Init/ Init
-    document.addEventListener('DOMContentLoaded', () => {
+    async function syncCustomInventoryFromAdmin() {
+      // Step 1: Immediate local render (0ms latency if localStorage has data)
+      let localItems = null;
+      try {
+        const custom = localStorage.getItem('orero_all_inventory');
+        if (custom) {
+          const parsed = JSON.parse(custom);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            localItems = parsed;
+            applyInventoryToCatalog(localItems);
+          }
+        }
+      } catch (err) {}
+
+      // Step 2: Fetch live Cloud Store (GitHub API instant + static JSON fallback)
+      try {
+        let cloudStore = null;
+
+        // Try instant GitHub API raw endpoint first (0s cache delay after admin publish)
+        try {
+          const apiRes = await fetch(`https://api.github.com/repos/${_ORERO_GH_REPO}/contents/${_ORERO_CMS_PATH}?ref=main&_t=${Date.now()}`, {
+            headers: { 'Accept': 'application/vnd.github.raw+json' },
+            cache: 'no-store'
+          });
+          if (apiRes.ok) {
+            cloudStore = await apiRes.json();
+          }
+        } catch (e) {}
+
+        // Fallback to static GitHub Pages JSON (unlimited requests)
+        if (!cloudStore) {
+          const staticRes = await fetch(`${_ORERO_CMS_PATH}?t=${Date.now()}`, { cache: 'no-store' });
+          if (staticRes.ok) {
+            cloudStore = await staticRes.json();
+          }
+        }
+
+        if (cloudStore && Array.isArray(cloudStore.inventory) && cloudStore.inventory.length > 0) {
+          const cloudRev = cloudStore.cloudRevision || 0;
+          const localRev = parseInt(localStorage.getItem('orero_cloud_revision') || '0', 10);
+
+          // Check if this browser has unsynced admin items (e.g., prod_* published on the client's device before cloud sync existed!)
+          if (localItems && localItems.length > 0) {
+            const cloudIds = new Set(cloudStore.inventory.map(i => i.id));
+            const unsyncedCustom = localItems.filter(i => i.id && i.id.startsWith('prod_') && !cloudIds.has(i.id));
+            const isOwnerBrowser = localStorage.getItem('orero_admin_logged') === 'true' || sessionStorage.getItem('orero_admin_logged') === 'true';
+
+            if (unsyncedCustom.length > 0 || (isOwnerBrowser && cloudRev === 0 && localItems.length !== cloudStore.inventory.length)) {
+              const localIds = new Set(localItems.map(i => i.id));
+              const merged = [...localItems];
+              if (cloudRev > 0) {
+                cloudStore.inventory.forEach(ci => {
+                  if (!localIds.has(ci.id)) merged.push(ci);
+                });
+              }
+              applyInventoryToCatalog(merged);
+              _autoRescueOwnerLocalInventoryToCloud(merged, cloudStore);
+              return;
+            }
+          }
+
+          // Standard visitor or up-to-date cloud: apply cloud inventory and cache locally
+          if (cloudRev >= localRev || !localItems) {
+            try {
+              localStorage.setItem('orero_all_inventory', JSON.stringify(cloudStore.inventory));
+              localStorage.setItem('orero_cloud_revision', String(cloudRev));
+            } catch (e) {}
+            applyInventoryToCatalog(cloudStore.inventory);
+          }
+        }
+      } catch (err) {
+        console.warn('Cloud inventory sync notice:', err);
+      }
+    }
+
+    // Upgrade openMotoModal to support formatted prices & km strings cleanly
+    const _origOpenMotoModal = openMotoModal;
+    openMotoModal = function(motoId) {
+      const moto = MOTOS_DATA[motoId];
+      if (!moto) return;
+
+      const overlay = document.getElementById('motoModalOverlay');
+      const content = document.getElementById('motoModalContent');
+
+      const featuresHtml = (moto.features || []).map(f => `<li style="margin-bottom:6px;">✓ ${f}</li>`).join('');
+      const kmStr = moto.kmFormatted || (moto.km > 0 ? `${moto.km.toLocaleString('es-ES')} km` : '0 km (A estrenar)');
+      const priceStr = moto.priceFormatted || (moto.priceCash ? `${moto.priceCash.toLocaleString('es-ES')} €` : 'Consultar');
+      const cleanImg = _normalizePublicAssetUrl(moto.image);
+      const rawFallback = _getRawFallbackUrl(moto.image);
+
+      content.innerHTML = `
+        <div style="display:flex; gap:10px; align-items:center; margin-bottom:12px;">
+          <span class="eyebrow-tag" style="margin:0;">${moto.brand}</span>
+          <span style="font-size:0.8rem; color:var(--text-muted);">${moto.badge || 'Stock'}</span>
+        </div>
+        <h2 style="font-size:2rem; font-weight:900; margin-bottom:16px;">${moto.brand} ${moto.model}</h2>
+
+        <div style="width:100%; height:320px; border-radius:14px; overflow:hidden; margin-bottom:20px; background:#07090e;">
+          <img src="${cleanImg}" alt="${moto.brand} ${moto.model}" style="width:100%; height:100%; object-fit:cover;" onerror="if(!this.dataset.rawTried){this.dataset.rawTried='1';this.src='${rawFallback}';}else{this.onerror=null;this.src='assets/clean_showroom_orero.jpg';}">
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(120px, 1fr)); gap:12px; margin-bottom:20px; background:#0d121c; padding:16px; border-radius:10px; border:1px solid rgba(255,255,255,0.06);">
+          <div><span style="font-size:0.75rem; color:var(--text-muted); display:block;">Precio Contado:</span><strong style="color:var(--red); font-size:1.15rem;">${priceStr}</strong></div>
+          <div><span style="font-size:0.75rem; color:var(--text-muted); display:block;">Año:</span><strong>${moto.year || 2024}</strong></div>
+          <div><span style="font-size:0.75rem; color:var(--text-muted); display:block;">Kilometraje:</span><strong>${kmStr}</strong></div>
+          <div><span style="font-size:0.75rem; color:var(--text-muted); display:block;">Potencia:</span><strong>${moto.power || 'Consultar'}</strong></div>
+          <div><span style="font-size:0.75rem; color:var(--text-muted); display:block;">Cilindrada:</span><strong>${moto.cc || 'Consultar'}</strong></div>
+          <div><span style="font-size:0.75rem; color:var(--text-muted); display:block;">Próxima ITV:</span><strong style="color:var(--green); font-size:0.95rem;">📅 ${moto.itv || 'Al día'}</strong></div>
+        </div>
+
+        <p style="font-size:0.95rem; color:var(--text-muted); line-height:1.6; margin-bottom:20px;">
+          ${moto.description || 'Motocicleta en estado impecable. Revisión completa de 60 puntos en nuestro taller oficial, gestión documental DGT y entrega inmediata.'}
+        </p>
+
+        <h4 style="font-size:1rem; font-weight:800; color:#fff; margin-bottom:10px;">Equipamiento & Detalles Técnicos:</h4>
+        <ul style="list-style:none; color:var(--text-muted); font-size:0.9rem; margin-bottom:28px;">
+          ${featuresHtml}
+        </ul>
+
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="tel:+34966740120" class="btn-hero btn-hero-red" style="flex:1; justify-content:center; padding:14px;">
+            <span>📞 Llamar al Taller (966 74 01 20)</span>
+          </a>
+          <a href="#reservar-cita" onclick="closeMotoModalDirect()" class="btn-hero btn-hero-outline" style="flex:1; justify-content:center; padding:14px;">
+            <span>📅 Pedir Cita para Verla</span>
+          </a>
+        </div>
+      `;
+
+      overlay.classList.add('open');
+    };
+
+    // Initialize everything cleanly once
+    let _oreroInitDone = false;
+    function initOreroPublicSite() {
+      if (_oreroInitDone) return;
+      _oreroInitDone = true;
+      syncCustomInventoryFromAdmin();
       animateCounters();
       initScrollAnimations();
       initCardTilt();
       checkCookieConsent();
       checkHashRoute();
-      syncCustomInventoryFromAdmin();
-    });
-
-    if (document.readyState === 'complete' || document.readyState === 'interactive') {
-      setTimeout(() => {
-        animateCounters();
-        initScrollAnimations();
-        initCardTilt();
-        checkCookieConsent();
-      }, 50);
     }
-    
-  
+
+    document.addEventListener('DOMContentLoaded', initOreroPublicSite);
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      setTimeout(initOreroPublicSite, 20);
+    }
+
+    // Live instant updates when Admin tab saves changes
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'orero_all_inventory') {
+        syncCustomInventoryFromAdmin();
+      }
+    });
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        syncCustomInventoryFromAdmin();
+      }
+    });
+    try {
+      const bc = new BroadcastChannel('orero_live_sync');
+      bc.onmessage = () => syncCustomInventoryFromAdmin();
+    } catch (e) {}
+
     // ══════════════════════════════════════════════════════════
     // KAWASAKI NINJA H2R AUDIO ENGINE & PROCEDURAL SYNTHESIZER
     // ══════════════════════════════════════════════════════════
