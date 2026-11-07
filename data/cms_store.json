@@ -1,8 +1,36 @@
 {
-  "cloudRevision": 1,
-  "updatedAt": 1794045281177,
-  "updatedAtISO": "2026-11-07T09:54:41.177Z",
+  "cloudRevision": 2,
+  "updatedAt": 1794045498837,
+  "updatedAtISO": "2026-11-07T09:58:18.837Z",
   "inventory": [
+    {
+      "id": "prod_1794045496706",
+      "brand": "SYM",
+      "model": "SYM",
+      "title": "SYM",
+      "category": "ocasion",
+      "type": "scooter",
+      "a2": false,
+      "license": "Permiso AM o B",
+      "cc": "50 cc",
+      "power": "3 CV",
+      "itv": "NOVIEMBRE 2028",
+      "price": "1200 €",
+      "priceCash": 1200,
+      "financeFrom": null,
+      "year": 2020,
+      "km": "60786",
+      "image": "assets/uploads/prod_1794045496706_1794045496787.jpg",
+      "status": "disponible",
+      "badge": "Ocasión",
+      "desc": "Vehículo revisado y disponible en nuestra exposición de Calle San Agustín 18, Orihuela.",
+      "features": [
+        "Cilindrada: 50 cc · Potencia: 3 CV",
+        "Compatible con Permiso AM o B",
+        "Revisión completa de 60 puntos de seguridad en nuestro taller oficial",
+        "Gestión documental e intermediación transparente en Calle San Agustín 18"
+      ]
+    },
     {
       "id": "prod_1793207711406",
       "title": "KAWASAKI  KLE 500 SE 2026",
